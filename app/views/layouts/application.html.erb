@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <header class="clearfix">
+      <div class="headline_box">
+        <h1 class="title"><%= link_to "MOVIE REVIEW", "#" %></h1>
+      </div>
+      <% if admin_signed_in? %>
+        <div class="link_tags">
+          <div class="link_tag"><%= link_to "ユーザー一覧", users_path %></div>
+          <div class="link_tag"><%= link_to "投稿一覧", reviews_path %></div>
+          <div class="link_tag"><%= link_to "作品一覧", movies_path %></div>
+          <div class="link_tag"><%= link_to "作品登録", new_movies_path %></div>
+          <div class="link_tag"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></div>
+        </div>
+      <% elsif user_signed_in? %>
+
+      <% else %>
+      <div class="link_tags">
+        <div class="link_tag"><%= link_to "新規登録",new_user_registration_path  %></div>
+        <div class="link_tag"><%= link_to "ログイン", new_user_session_path%></div>
+      </div>
+      <% end %>
+    </header>
     <%= yield %>
+    <footer>
+
+    </footer>
   </body>
 </html>
