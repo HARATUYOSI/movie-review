@@ -1,0 +1,2 @@
+class CastMoviesController < ApplicationController
+end

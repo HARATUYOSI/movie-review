@@ -1,0 +1,2 @@
+class ReleaseYearsController < ApplicationController
+end

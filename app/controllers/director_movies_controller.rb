@@ -1,0 +1,2 @@
+class DirectorMoviesController < ApplicationController
+end
