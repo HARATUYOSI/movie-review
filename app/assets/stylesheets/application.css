@@ -125,3 +125,83 @@ header {
   margin-left: 750px;
   margin-top: 50px;
 }
+/* top */
+.top_content {
+  margin-top: 50px;
+}
+.top_headline {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.top_movie_image {
+  height: 230px;
+  width: 200px;
+  background-color: red;
+  text-align: center;
+  line-height: 230px;
+  margin: 0 auto;
+}
+.top_movie_cotent {
+  width: 300px;
+  float: left;
+}
+.top_movie_title {
+  text-align: center;
+  padding: 10px 0;
+}
+.favorite_box {
+  float: left;
+  width: 66px;
+  text-align: center;
+  font-size: 25px;
+}
+.star_box {
+  float: left;
+  width: 67px;
+  text-align: center;
+  font-size: 25px;
+}
+.review_box {
+  float: left;
+  width: 67px;
+  text-align: center;
+  font-size: 25px;
+}
+.top_movie_count {
+  width: 200px;
+  margin: 0 auto;
+}
+.top_movie_dete {
+  text-align: center;
+}
+.top_review_container {
+  margin-top: 50px;
+}
+.top_review_headline {
+  text-align: center;
+}
+.top_review_image {
+  height: 100px;
+  width: 80px;
+  background-color: red;
+  text-align: center;
+  line-height: 100px;
+  float: left;
+}
+.top_user_text {
+  float: left;
+  padding-left: 20px;
+}
+.top_review_box {
+  float: left;
+}
+.top_movie_box {
+  float: left;
+}
+.top_review_content {
+  margin: 0 50px;
+  width: 600px;
+}
+.top_review_text {
+  padding-right: 30px;
+}
