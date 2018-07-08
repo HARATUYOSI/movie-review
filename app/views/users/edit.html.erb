@@ -1,0 +1,35 @@
+<div class="user_edit_container">
+  <div class="headline_box">
+    <h2 class="useredit_headline">登録情報編集 </h2>
+  </div>
+  <% if @user.errors.full_messages %>
+    <div class="errors_message"><% @user.errors.full_messages.each do |message| %></div>
+    <%= message %>
+    <% end %>
+  <% end %>
+  <table class="edit_table" border="1">
+    <%= form_for(@user) do |f| %>
+    <tr>
+      <div class="filed">
+          <td class="td_color"><%= f.label :氏名,class: "label_name" %><br /></td>
+          <td><%= f.text_field :name%></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :自己紹介,class: "label_name" %><br /></td>
+        <td><%= f.text_field :introduction %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td class="td_color"><%= f.label :メールアドレス,class: "label_name" %><br /></td>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </div>
+    </tr>
+    <%= f.attachment_field :image %>
+  </table>
+  <div class="actions">
+    <%= f.submit "編集", class:"edit_btn" %>
+  </div>
+  <% end %>
