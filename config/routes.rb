@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   root 'movies#top'
   resources :users
   resources :reviews
+  get 'movies/link' => 'movies#link'
   resources :movies
+
 end

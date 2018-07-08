@@ -205,3 +205,15 @@ header {
 .top_review_text {
   padding-right: 30px;
 }
+/* link */
+.link_container {
+  width: 1500px;
+  margin: 0 auto;
+}
+.movie_link_box {
+  float: left;
+  width: 250px;
+
+  border: 1px solid;
+  margin: 50px 25px;
+}

@@ -13,4 +13,6 @@ class MoviesController < ApplicationController
   end
   def index
   end
+  def link
+  end
 end
