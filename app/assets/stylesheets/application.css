@@ -95,3 +95,33 @@ header {
 .reviews_index_link {
   width: 150px;
 }
+/* movies_index */
+.movies_index_container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.movie_content {
+  margin-top: 50px;
+  border: 1px solid;
+  padding: 20px;
+}
+.movie_image {
+  background-color: red;
+  width: 200px;
+  height: 300px;
+  float: left;
+  text-align: center;
+  line-height: 300px;
+}
+.movie_text {
+  float: left;
+  padding-left: 20px;
+}
+.text_float {
+  float: left;
+}
+.link_box {
+  width: 100px;
+  margin-left: 750px;
+  margin-top: 50px;
+}
