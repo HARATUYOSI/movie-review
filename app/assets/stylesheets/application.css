@@ -77,3 +77,21 @@ header {
 .user_index_link {
   width: 150px;
 }
+/* review_index */
+.reviews_index_table {
+  width: 1300px;
+}
+.reviews_index_container {
+  margin: 0 auto;
+  width: 1300px;margin-top: 30px;
+}
+.show_btn , .destroy_btn {
+  float: left;
+}
+.destroy_btn {
+  float: right;
+}
+
+.reviews_index_link {
+  width: 150px;
+}
