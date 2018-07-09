@@ -1,19 +1,24 @@
 <div class="user_index_container">
-    <table border="1" cellspacing="0" cellpadding="0" align="left" class="user_index_table">
+
+    <table border="1"  cellspacing="0" cellpadding="0" align="left" class="user_index_table">
       <tr>
         <th>ID</th>
         <th>NAME</th>
         <th>INTRODUCTION</th>
         <th class="user_index_link">LINK</th>
       </tr>
+      <% @users.each do |user| %>
+
       <tr>
-        <td>1</td>
-        <td>aaaaa</td>
-        <td>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</td>
+        <td><%= user.id %></td>
+        <td><%= user.name%></td>
+        <td><%= user.introduction %></td>
         <td class="clearfix">
-          <div class="show_btn"><%= link_to "詳細", users_path %></div>
+          <div class="show_btn"><%= link_to "詳細","/users/#{user.id}" %></div>
           <div class="destroy_btn"><%= link_to "削除", users_path,class: "btn btn-danger" %></div>
         </td>
       </tr>
+      <% end %>
     </table>
+
 </div>

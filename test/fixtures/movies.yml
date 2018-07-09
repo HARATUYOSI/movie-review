@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  image_id: MyText
+  release_date: 2018-07-09
+  release_end_date: 2018-07-09
+  genre_id: 1
+  country_id: 1
+  stroy: MyText
+  release_year_id: 1
+  favorite_count: 1
+  review_count: 1
+  satr_average: MyString
+
+two:
+  title: MyString
+  image_id: MyText
+  release_date: 2018-07-09
+  release_end_date: 2018-07-09
+  genre_id: 1
+  country_id: 1
+  stroy: MyText
+  release_year_id: 1
+  favorite_count: 1
+  review_count: 1
+  satr_average: MyString

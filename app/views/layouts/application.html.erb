@@ -16,10 +16,11 @@
       </div>
       <% if admin_signed_in? %>
         <div class="link_tags">
+          <div class="link_tag"><%= link_to "問い合わせ一覧", contacts_path %></div>
           <div class="link_tag"><%= link_to "ユーザー一覧", users_path %></div>
           <div class="link_tag"><%= link_to "投稿一覧", reviews_path %></div>
           <div class="link_tag"><%= link_to "作品一覧", movies_path %></div>
-          <div class="link_tag"><%= link_to "作品登録", new_movies_path %></div>
+          <div class="link_tag"><%= link_to "作品登録", new_movie_path %></div>
           <div class="link_tag"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></div>
         </div>
       <% elsif user_signed_in? %>
@@ -27,7 +28,7 @@
         <div class="link_tag"><%= link_to "映画を探す", movies_link_path %></div>
         <div class="link_tag"><%= link_to "マイページ", user_path(current_user.id) %></div>
         <div class="link_tag"><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></div>
-        <div class="link_tag"><%= link_to "お問い合わせ", "#" %></div>
+        <div class="link_tag"><%= link_to "お問い合わせ", new_contact_path %></div>
         <div class="link_tag"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></div>
       </div>
       <% else %>

@@ -1,0 +1,77 @@
+<div>
+  <%= form_for @movie do |f| %>
+    <%= f.attachment_field :image %>
+    <div class="form-group">
+		　　<label for="product_name" class="control-label">タイトル</label>
+    		<div class="">
+　  		　　<%= f.text_field :title, class: 'form-control' %>
+    		</div>
+   　</div>
+     <div class="form-group">
+     　　<label for="product_name" class="control-label">公開年月日</label>
+         <div class="">
+  　  		　　<%= f.date_field :release_date, class: 'form-control' %>
+         </div>
+    　</div>
+      <div class="form-group">
+      　　<label for="product_name" class="control-label">公開終了年月日</label>
+          <div class="">
+   　  		　　<%= f.date_field :release_end_date, class: 'form-control' %>
+          </div>
+     　</div>
+       <div class="form-group">
+       　　<label for="product_name" class="control-label">ストーリー</label>
+           <div class="">
+    　  		　　<%= f.text_area :stroy, class: 'form-control' %>
+           </div>
+      　</div>
+      <%= fields_for @genre do |g| %>
+        <div class="form-group">
+          <label for="genre_name" class="control-label col-xs-3">ジャンル</label>
+          <div class="">
+            <%= g.text_field :name, class: 'form-control', :list => "genre_list", :autocomplete => "off" %>
+            <datalist id="genre_list">
+              <% if @genres %>
+                <% @genres.each do |genre| %>
+                  <option value="<%= genre.name %>"><%= genre.name %></option>
+                <% end %>
+              <% end %>
+            </datalist>
+          </div>
+        </div>
+      <% end %>
+      <%= fields_for @country do |c| %>
+        <div class="form-group">
+          <label for="genre_name" class="control-label col-xs-3">製作国</label>
+          <div class="">
+            <%= c.text_field :name, class: 'form-control', :list => "country_list", :autocomplete => "off" %>
+            <datalist id="country_list">
+              <% if @countries %>
+                <% @countries.each do |country| %>
+                  <option value="<%= country.name %>"><%= country.name %></option>
+                <% end %>
+              <% end %>
+            </datalist>
+          </div>
+        </div>
+      <% end %>
+        <%= fields_for @release_year do |r| %>
+          <div class="form-group">
+						<label for="genre_name" class="control-label col-xs-3">製作年</label>
+						<div class="">
+							<%= r.number_field :year, class: 'form-control', :list => "release_year_list", :autocomplete => "off" %>
+							<datalist id="release_year_list">
+                <% if @release_years %>
+  								<% @release_years.each do |year| %>
+  									<option value="<%= year.year %>"><%= year.year %></option>
+  								<% end %>
+                <% end %>
+							</datalist>
+						</div>
+					</div>
+        <% end %>
+        <div class="col-xs-offset-9 col-xs-3">
+          <%= f.submit '登録', class: "btn btn-primary" %>
+        </div>
+  <% end %>
+</div>

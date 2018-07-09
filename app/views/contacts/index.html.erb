@@ -1,0 +1,18 @@
+<div class="contacts_index_container">
+  <table border="1"  cellspacing="0" cellpadding="0" align="left" class="contacts_index_table">
+    <tr>
+      <th>ID</th>
+      <th>USER-ID</th>
+      <th>USER-NAME</th>
+      <th class="contact_comment">COMMENT</th>
+    </tr>
+    <% @contacts.each do |contact| %>
+    <tr>
+      <td><%= contact.id%></td>
+      <td><%= contact.user.id%></td>
+      <td><%= contact.user.name%></td>
+      <td><%= contact.comment%></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
