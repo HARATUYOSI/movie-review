@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_09_074643) do
+ActiveRecord::Schema.define(version: 2018_07_12_093112) do
 
   create_table "Movies", force: :cascade do |t|
     t.string "title"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 2018_07_09_074643) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.string "comment"
+    t.boolean "spoiler", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -84,14 +93,41 @@ ActiveRecord::Schema.define(version: 2018_07_09_074643) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+    t.boolean "best_movie", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "release_years", force: :cascade do |t|
     t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "user_id"
+    t.text "review"
+    t.integer "star", default: 0
+    t.boolean "spoiler", default: false, null: false
+    t.integer "like_count", default: 0
+    t.integer "comment_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

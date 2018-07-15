@@ -1,0 +1,17 @@
+<%= form_for @review,:url => {:action => :update} do |f| %>
+<div class="evaluation">
+  <input id="star1" type="radio" name="star" value="5" />
+  <label for="star1">★</label>
+  <input id="star2" type="radio" name="star" value="4" />
+  <label for="star2">★</label>
+  <input id="star3" type="radio" name="star" value="3" />
+  <label for="star3">★</label>
+  <input id="star4" type="radio" name="star" value="2" />
+  <label for="star4">★</label>
+  <input id="star5" type="radio" name="star" value="1" />
+  <label for="star5">★</label>
+</div>
+  <%= f.text_area :review %>
+  <%= f.check_box :spoiler,{},checked_value = "true",unchecked_value = "false" %>
+  <%= f.submit "送信",class: "post_btn" %>
+<% end %>

@@ -1,0 +1,109 @@
+<div class="user_show_container clearfix">
+  <div class="user_left_container">
+    <div class="user_info_box">
+      <div class="user_show_image">
+        <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+      </div>
+      <div class="user_show_text"><%= @user.name %></div>
+        <div class="user_show_text"><%= @user.introduction %></div>
+
+      <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+    </div>
+    <div class="clearfix user_show_count">
+      <div class="favorite_box">
+        &#9829;
+        <div><%= @favorite_count %></div>
+        <%= link_to "show","/users/#{@user.id}/favorites"%>
+      </div>
+      <div class="review_box">
+        &#8801;
+        <div><%= @review_count %></div>
+        <%= link_to "show","/users/#{@user.id}/reviews"%>
+      </div>
+      <div class="followers_box">
+        followers
+        <div>
+          <%= link_to "show","/users/#{@user.id}/followers"%>
+        </div>
+      </div>
+      <div class="following_box">
+        following
+        <div>
+          <%= link_to "show","/users/#{@user.id}/following"%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="user_right_container">
+    <div class="user_reviews_box clearfix">
+      <h2>投稿一覧</h2>
+
+      <% @reviews.each do |review| %>
+
+        <div class="user_review_content clearfix">
+        <div class="user_info_review_box">
+          <div class="clearfix">
+            <div class="user_show_image_1">
+              <%=  attachment_image_tag review.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
+            </div>
+            <div class="user_show_text_1">
+              <%= review.user.name %>
+              <%= review.created_at.strftime('%Y/%m/%d') %>
+            </div>
+          </div>
+          <div>
+            <div class="star-position">
+              <% if review.star == 1 %>
+                <div class="star-color">★</div>
+              <% elsif review.star == 2 %>
+                <div class="star-color">★★</div>
+              <% elsif review.star == 3 %>
+                <div class="star-color">★★★</div>
+              <% elsif review.star == 4 %>
+                <div class="star-color">★★★★</div>
+              <% elsif review.star == 5 %>
+                <div class="star-color">★★★★★</div>
+              <% end %>
+            </div>
+            <% if review.spoiler == true %>
+              <div class="hidden_box">
+                <label for="label-<%=review.id%>">クリックして表示</label>
+                <input type="checkbox" id="label-<%=review.id%>"/>
+                <div class="hidden_show">
+                  <%= review.review %>
+                </div>
+              </div>
+              <% else %>
+              <%= review.review %>
+            <% end %>
+          </div>
+        </div>
+
+
+        <div class="favorite_movie_content">
+          <div>
+            <%= link_to movie_path(review.movie.id) do%>
+            <%=  attachment_image_tag review.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
+          </div>
+          <div><%= review.movie.title %></div>
+          <% end %>
+          <div class="clearfix show_movie_count">
+            <div class="favorite_box">
+              &#9829;
+            <div><%= review.movie.favorite_count %></div>
+            </div>
+            <div class="star_box">
+              &#9734;
+              <div><%= review.movie.satr_average %></div>
+            </div>
+            <div class="review_box">
+              &#8801;
+              <div><%= review.movie.review_count %></div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="new_cast_container clearfix">
+<diV class="new_cast_table">
+  <div><h4>登録者情報</h4></div>
+  <table border="1"  cellspacing="0" cellpadding="0" align="left" class="cast_table" >
+  <% if  @cast_movies%>
+  <% @cast_movies.each do |cast| %>
+  <tr>
+    <td><%= cast.cast.name %></td>
+    <td><%= link_to "削除", "/movies/#{params[:movie_id]}/cast_movies/#{cast.id}",  method: :delete %></td>
+
+  </tr>
+  <% end %>
+  <% end %>
+  </table>
+</diV>
+<div class="new_cast_form">
+<%= form_for @cast,:url => {:action => :create} do |f| %>
+  <div class="form-group">
+    <label for="genre_name" class="control-label">出演者</label>
+    <div class="">
+      <%= f.text_field :name, class: 'form-control', :list => "cast_list", :autocomplete => "off" %>
+      <datalist id="cast_list">
+        <% if @casts %>
+          <% @casts.each do |cast| %>
+            <option value="<%= cast.name %>"><%= cast.name %></option>
+          <% end %>
+        <% end %>
+      </datalist>
+      <div class="action_btn">
+        <%= f.submit '登録', class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to "監督登録ページに進む", new_movie_director_path(params[:movie_id]) %>
+</div>
+</div>

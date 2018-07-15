@@ -1,0 +1,66 @@
+<div class="clearfix link_show_container">
+    <div class="list_show_headline">
+      <h2><%= "#{@cast.name}出演の映画一覧" %></h2>
+    </div>
+    <div class="link_list">
+      <h4>出演者一覧</h4>
+　　　<% @casts.each do |cast| %>
+      <div class="list_content">
+        <%= link_to "#{cast.name}", cast_path(cast.id) %>
+      </div>
+    <% end %>
+  </div>
+  <% @movies.each do |movie| %>
+  <div class="movie_contents">
+  <div class="movie_content clearfix">
+    <div class="movie_image">
+      <%= attachment_image_tag movie.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+    </div>
+    <div class="movie_text">
+      <div class="movie_text_content">
+        <h2><%= movie.movie.title %></h2>
+      </div>
+      <div class="movie_text_content">
+        公開年月日: <%= movie.movie.release_date%>
+      </div>
+      <div class="movie_text_content">
+        公開終了年月日: <%= movie.movie.release_end_date%>
+      </div>
+      <div class="movie_text_content">
+        製作国: <%= movie.movie.country.name%>
+      </div>
+      <div class="movie_text_content">
+        ジャンル: <%= movie.movie.genre.name %>
+      </div>
+      <div class="movie_text_content">
+        <% directors = DirectorMovie.where(movie_id: movie.movie.id)%>
+        <% if directors %>
+        監督
+        <% directors.each do |director| %>
+         <div class="director_content"><%=  director.director.name%></div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="movie_text_content">
+        <% casts = CastMovie.where(movie_id: movie.movie.id)%>
+        <% if casts %>
+        出演者
+        <% casts.each do |cast| %>
+         <div><%= cast.cast.name %></div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="movie_text_content">
+        ストーリー
+      </div>
+      <div>
+        <%= movie.movie.stroy %>
+      </div>
+      <div>
+        <%= link_to "show", movie_path(movie.movie.id) %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>

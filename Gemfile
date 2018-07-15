@@ -70,3 +70,4 @@ gem "refile-mini_magick"
 gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'ransack'
+gem 'nested_form_fields'

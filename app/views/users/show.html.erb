@@ -1,4 +1,35 @@
-<%= @user.email %>
-<%= @user.name %>
-<%= @user.introduction %>
-<%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+<div class="user_show_container clearfix">
+  <div class="user_left_container">
+    <div class="user_info_box">
+      <div class="user_show_image">
+        <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+      </div>
+      <div class="user_show_text"><%= @user.name %></div>
+        <div class="user_show_text"><%= @user.introduction %></div>
+
+      <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+    </div>
+    <div class="clearfix user_show_count">
+      <div class="favorite_box">
+        &#9829;
+        <div><%= @favorite_count %></div>
+      </div>
+      <div class="review_box">
+        &#8801;
+        <div><%= @review_count %></div>
+      </div>
+      <div class="followers_box">
+        followers
+        <div></div>
+      </div>
+      <div class="following_box">
+        following
+        <div></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="time_line_box">
+    タイムライン
+  </div>
+</div>

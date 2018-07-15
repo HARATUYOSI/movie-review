@@ -3,55 +3,50 @@
     <div class="link_headline">
       <h3>ジャンル</h3>
     </div>
+    <% @genres.each do |genre| %>
     <div>
-      <%= link_to "SF", users_path %>
+      <%= link_to "#{genre.name}", genre_path(genre.id) %>
     </div>
-    <div>
-      <%= link_to "アクション", users_path %>
-    </div>
+    <% end %>
   </div>
   <div class="movie_link_box">
     <div class="link_headline">
       <h3>公開年</h3>
     </div>
+    <% @release_years.each do |release_year| %>
     <div>
-      <%= link_to "2018", users_path %>
+      <%= link_to "#{release_year.year}", release_year_path(release_year.id) %>
     </div>
-    <div>
-      <%= link_to "2017", users_path %>
-    </div>
+    <% end %>
   </div>
   <div class="movie_link_box">
     <div class="link_headline">
       <h3>人気の出演者</h3>
     </div>
+    <% @casts.each do |cast| %>
     <div>
-      <%= link_to "aaaaa", users_path %>
+      <%= link_to "#{cast.name}", cast_path(cast.id) %>
     </div>
-    <div>
-      <%= link_to "vvvvvv", users_path %>
-    </div>
+    <% end %>
   </div>
   <div class="movie_link_box">
     <div class="link_headline">
       <h3>人気の監督</h3>
     </div>
+    <% @directors.each do |director| %>
     <div>
-      <%= link_to "qqqqqqqq", users_path %>
+      <%= link_to "#{director.name}", director_path(director.id) %>
     </div>
-    <div>
-      <%= link_to "qqqqqq", users_path %>
-    </div>
+    <% end %>
   </div>
   <div class="movie_link_box">
     <div class="link_headline">
       <h3>製作国</h3>
     </div>
+    <% @countries.each do |country| %>
     <div>
-      <%= link_to "日本", users_path %>
+      <%= link_to "#{country.name}", country_path(country.id) %>
     </div>
-    <div>
-      <%= link_to "アメリカ", users_path %>
-    </div>
+    <% end %>
   </div>
 </div>

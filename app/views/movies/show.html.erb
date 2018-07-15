@@ -1,0 +1,139 @@
+<div class="movie_show_container clearfix">
+  <div class="movie_content_left">
+    <div class="movie_show_image">
+      <%= attachment_image_tag @movie, :image, :fill, 300, 400, format: 'jpg', fallback: 'mv.png', :size => '300x400' %>
+    </div>
+    <div class="clearfix show_movie_count">
+      <div class="favorite_box">
+        &#9829;
+      <div><%= @movie.favorite_count %></div>
+      </div>
+      <div class="star_box">
+        &#9734;
+        <div><%= @movie.satr_average %></div>
+      </div>
+      <div class="review_box">
+        &#8801;
+        <div><%= @movie.review_count %></div>
+      </div>
+    </div>
+    <div class="favorite_btn_box">
+      <% if  @favorite.blank?%>
+        <%= link_to "お気に入りに登録", movie_favorites_path(@movie),  method: :post,class: "btn btn-primary"%>
+      <% else %>
+        <%= link_to "お気に入りに登録中", "/movies/#{@movie.id}/favorites/#{@favorite.id}",  method: :delete,class: "btn btn-danger"%>
+      <% end %>
+    </div>
+    <div class="link_btn_box">
+      <% if @review.blank? %>
+        <%= link_to "レビューを投稿する", new_movie_review_path(@movie),class: "btn btn-success" %>
+      <% else %>
+      <%= link_to "レビューを編集", "/movies/#{@movie.id}/reviews/#{@review.id}/edit",class: "btn btn-danger" %>
+        <%= link_to "レビューを削除", "/movies/#{@movie.id}/reviews/#{@review.id}",  method: :delete,class: "btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="movie_content_right">
+    <div class="movie_text">
+      <div class="movie_text_content">
+        <h2><%= @movie.title %></h2>
+      </div>
+      <div class="movie_text_content">
+        公開年月日: <%= @movie.release_date%>
+      </div>
+      <div class="movie_text_content">
+        公開終了年月日: <%= @movie.release_end_date%>
+      </div>
+      <div class="movie_text_content">
+        製作国: <%= @movie.country.name%>
+      </div>
+      <div class="movie_text_content">
+        ジャンル: <%= @movie.genre.name %>
+      </div>
+      <div class="movie_text_content">
+        <% directors = DirectorMovie.where(movie_id: @movie.id)%>
+        <% if directors %>
+        監督
+        <% directors.each do |director| %>
+         <div class="director_content"><%=  director.director.name%></div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="movie_text_content">
+        <% casts = CastMovie.where(movie_id: @movie.id)%>
+        <% if casts %>
+        出演者
+        <% casts.each do |cast| %>
+         <div><%= cast.cast.name %></div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="movie_text_content">
+        ストーリー
+      </div>
+      <div>
+        <%= @movie.stroy %>
+      </div>
+    </div>
+  </div>
+  <div class="review_container">
+    <h2><%= "#{@movie.title}に投稿されたレビュー一覧" %></h2>
+    <% @reviews.each do |review| %>
+      <div class="review_content">
+        <div class="clearfix">
+          <div class="top_review_image">
+            <%= attachment_image_tag review.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
+          </div>
+          <div class="top_user_text">
+            <div>
+              <%= review.user.name %>
+            </div>
+            <div>
+              <%= review.created_at.strftime('%Y/%m/%d') %>
+            </div>
+          </div>
+        </div>
+       <div class="star-position">
+         <% if review.star == 1 %>
+           <div class="star-color">★</div>
+         <% elsif review.star == 2 %>
+           <div class="star-color">★★</div>
+         <% elsif review.star == 3 %>
+           <div class="star-color">★★★</div>
+         <% elsif review.star == 4 %>
+           <div class="star-color">★★★★</div>
+         <% elsif review.star == 5 %>
+           <div class="star-color">★★★★★</div>
+         <% end %>
+       </div>
+       <% if review.spoiler == true %>
+         <div class="hidden_box">
+           <label for="label-<%=review.id%>">クリックして表示</label>
+           <input type="checkbox" id="label-<%=review.id%>"/>
+           <div class="hidden_show">
+             <%= review.review %>
+           </div>
+           <%= review.like_count %>
+           <% if review.favorited_by?(current_user) %>
+           <%= link_to "いいね！解除", movie_review_like_path(@movie,review), method: :delete %>
+           <% else %>
+           <%= link_to "いいね！", "/movies/#{@movie.id}/reviews/#{review.id}/likes" , method: :post %>
+           <% end %>
+           <%= review.comment_count %>
+           <%= link_to "コメントする", "/movies/#{@movie.id}/reviews/#{review.id}/comments/new"  %>
+         </div>
+       <% else %>
+         <%= review.review %>
+         <%= review.like_count %>
+         <% if review.favorited_by?(current_user) %>
+         <%= link_to "いいね！解除", movie_review_like_path(@movie,review), method: :delete %>
+         <% else %>
+         <%= link_to "いいね！", "/movies/#{@movie.id}/reviews/#{review.id}/likes" , method: :post %>
+         <% end %>
+         <%= review.comment_count %>
+         <%= link_to "コメントする", "/movies/#{@movie.id}/reviews/#{review.id}/comments/new"  %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

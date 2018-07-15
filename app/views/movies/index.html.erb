@@ -1,37 +1,55 @@
 <div class="movies_index_container">
+  <%= @movies.each do |movie| %>
   <div class="movie_content clearfix">
     <div class="movie_image">
-      img
+      <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+
     </div>
     <div class="movie_text">
-      <div>
-        <h2>title</h2>
+      <div class="movie_text_content">
+        <h2><%= movie.title %></h2>
       </div>
-      <div>
-        公開年月日:y/m/d
+      <div class="movie_text_content">
+        公開年月日: <%= movie.release_date%>
       </div>
-      <div>
-        製作国:アメリカ
+      <div class="movie_text_content">
+        公開終了年月日: <%= movie.release_end_date%>
       </div>
-      <div>
-        ジャンル:アクション
+      <div class="movie_text_content">
+        製作国: <%= movie.country.name%>
       </div>
-      <div>
-        監督:ああああああ
+      <div class="movie_text_content">
+        ジャンル: <%= movie.genre.name %>
       </div>
-      <div>
-        出演者:いいいいいい
+      <div class="movie_text_content">
+        <% directors = DirectorMovie.where(movie_id: movie.id)%>
+        <% if directors %>
+        監督
+        <% directors.each do |director| %>
+         <div class="director_content"><%=  director.director.name%></div>
+        <% end %>
+        <% end %>
       </div>
-      <div>
+      <div class="movie_text_content">
+        <% casts = CastMovie.where(movie_id: movie.id)%>
+        <% if casts %>
+        出演者
+        <% casts.each do |cast| %>
+         <div><%= cast.cast.name %></div>
+        <% end %>
+        <% end %>
+      </div>
+      <div class="movie_text_content">
         ストーリー
       </div>
       <div>
-        あああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        <%= movie.stroy %>
       </div>
       <div class="link_box clearfix">
-        <div class="show_btn"><%= link_to "編集", users_path %></div>
-        <div class="destroy_btn"><%= link_to "削除", users_path,class: "btn btn-danger" %></div>
+        <div class="show_btn"><%= link_to "編集", edit_movie_path(movie.id),class: "btn btn-primary" %></div>
+        <div class="destroy_btn"><%= link_to "削除",  movie_path(movie.id),  method: :delete,class: "btn btn-danger" %></div>
       </div>
     </div>
   </div>
+  <% end %>
 </div>

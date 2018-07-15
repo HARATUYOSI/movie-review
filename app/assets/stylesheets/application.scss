@@ -1,0 +1,470 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+  @import "bootstrap";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.clearfix::after {
+ content: "";
+ display: block;
+ clear: both;
+}
+a {
+  text-decoration: none;
+}
+td {
+  padding: 15px 10px ;
+}
+/* header */
+header {
+  background-color: black;
+  height: 80px;
+}
+.headline_box {
+  line-height: 80px;
+  float: left;
+  margin-left: 40px;
+}
+.headline_box a {
+  color: white;
+}
+.link_tags {
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  font-size: 20px;
+}
+.link_tag {
+  float: left;
+  padding: 0 10px;
+}
+.link_tag a {
+  color: white;
+}
+/* user_index */
+.user_index_table {
+  width: 1300px;
+}
+.user_index_container {
+  margin: 0 auto;
+  width: 1300px;margin-top: 30px;
+}
+.show_btn , .destroy_btn {
+  float: left;
+}
+.destroy_btn {
+  float: right;
+}
+
+.user_index_link {
+  width: 150px;
+}
+/* review_index */
+.reviews_index_table {
+  width: 1300px;
+}
+.reviews_index_container {
+  margin: 0 auto;
+  width: 1300px;margin-top: 30px;
+}
+.show_btn , .destroy_btn {
+  float: left;
+}
+.destroy_btn {
+  float: right;
+}
+
+.reviews_index_link {
+  width: 150px;
+}
+/* movies_index */
+.movies_index_container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.movie_content {
+  margin-top: 50px;
+  border: 1px solid;
+  padding: 20px;
+}
+.movie_image {
+
+  width: 200px;
+  height: 300px;
+  float: left;
+
+
+}
+.movie_show_image {
+  width: 300px;
+  height: 400px;
+  float: left;
+}
+.movie_text {
+  float: left;
+  padding-left: 20px;
+}
+.text_float {
+  float: left;
+}
+.link_box {
+  width: 150px;
+  margin-left: 750px;
+  margin-top: 50px;
+}
+/* top */
+.top_content {
+  margin-top: 50px;
+}
+.top_headline {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.top_movie_image {
+  height: 230px;
+  width: 200px;
+  background-color: red;
+  text-align: center;
+  line-height: 230px;
+  margin: 0 auto;
+}
+.top_movie_cotent {
+  width: 300px;
+  float: left;
+}
+.top_movie_title {
+  text-align: center;
+  padding: 10px 0;
+}
+.favorite_box {
+  float: left;
+  width: 66px;
+  text-align: center;
+  font-size: 25px;
+}
+.star_box {
+  float: left;
+  width: 67px;
+  text-align: center;
+  font-size: 25px;
+}
+.review_box {
+  float: left;
+  width: 67px;
+  text-align: center;
+  font-size: 25px;
+}
+.top_movie_count {
+  width: 200px;
+  margin: 0 auto;
+}
+.show_movie_count {
+  width: 300px;
+  margin: 0 auto;
+}
+.top_movie_dete {
+  text-align: center;
+}
+.top_review_container {
+  margin-top: 50px;
+}
+.top_review_headline {
+  text-align: center;
+}
+.top_review_image {
+  height: 100px;
+  width: 80px;
+
+
+
+  float: left;
+}
+.top_user_text {
+  float: left;
+  padding-left: 20px;
+}
+.top_review_box {
+  float: left;
+}
+.top_movie_box {
+  float: left;
+}
+.top_review_content {
+  margin: 0 50px;
+  width: 600px;
+}
+.top_review_text {
+  padding-right: 30px;
+}
+/* link */
+.link_container {
+  width: 1500px;
+  margin: 0 auto;
+}
+.movie_link_box {
+  float: left;
+  width: 250px;
+
+  border: 1px solid;
+  margin: 50px 25px;
+}
+/* contacts_index */
+.contacts_index_container {
+  width: 1500px;
+  margin: 0 auto;
+}
+.contacts_index_table {
+  width: 1500px;
+  margin-top: 50px;
+}
+.contact_comment {
+  width: 900px;
+}
+.movie_text_content {
+  padding-bottom: 10px;
+}
+.movie_new_container {
+  width: 900px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.action_btn {
+  width: 100px;
+  margin: 0 auto;
+}
+.img_form {
+  margin-bottom: 20px;
+}
+.new_cast_container {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.new_cast_form {
+  width: 500PX;
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+
+}
+.new_cast_table {
+  width: 270px;
+  float: left;
+  text-align: center;
+}
+.cast_table {
+  width: 270px;
+}
+#cast_name , #director_name{
+  margin-bottom: 30px;
+}
+.form-group {
+  padding-top: 10px;
+}
+.movie_contents {
+  width: 900px;
+  float: left;
+}
+.link_list {
+  width: 260px;
+  float: left;
+  border: 1px solid;
+  margin-right: 40px;
+  margin-top: 50px;
+  padding-left: 5px;
+}
+.link_show_container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.list_content {
+  font-size: 18px;
+  padding: 5px 5px;
+}
+.list_show_headline {
+  text-align: center;
+}
+.movie_content_right {
+  width: 900px;
+  border: 1px solid;
+  float: left;
+  margin-bottom: 50px;
+
+}
+.movie_content_left {
+  width: 400px;
+  float: left;
+
+}
+.movie_show_container {
+  width: 1500px;
+  margin: 0 auto;
+}
+.movie_show_image {
+  margin: 0 auto;
+  margin-left: 50px;
+}
+.favorite_btn_box {
+  width: 150px;
+  margin: 0 auto;
+  text-align: center;
+}
+.link_btn_box {
+  width: 150px;
+  margin: 0 auto;
+  text-align: center;
+}
+.evaluation{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+.evaluation input[type='radio']{
+  display: none;
+}
+.evaluation label{
+  position: relative;
+  padding: 2px 2px 0;
+  color: gray;
+  cursor: pointer;
+  font-size: 25px;
+}
+.evaluation label .text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: gray;
+}
+.evaluation label:hover,
+.evaluation label:hover ~ label,
+.evaluation input[type='radio']:checked ~ label{
+  color: #ffcc00;
+}
+
+.review_container {
+  border: 1px solid;
+  float: right;
+  width: 900px;
+  margin-right: 200px;
+}
+.hidden_box {
+    margin: 2em 0;/*前後の余白*/
+    padding: 0;
+}
+
+/*ボタン装飾*/
+.hidden_box label {
+    padding: 15px;
+    font-weight: bold;
+    border: solid 2px black;
+    cursor :pointer;
+}
+
+/*ボタンホバー時*/
+.hidden_box label:hover {
+    background: #efefef;
+}
+
+/*チェックは見えなくする*/
+.hidden_box input {
+    display: none;
+}
+
+/*中身を非表示にしておく*/
+.hidden_box .hidden_show {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+/*クリックで中身表示*/
+.hidden_box input:checked ~ .hidden_show {
+    padding: 10px 0;
+    height: auto;
+    opacity: 1;
+}
+.user_show_container {
+  width: 1500px;
+  margin: 0 auto;
+}
+.user_left_container {
+  float: left;
+  width: 398px;
+  margin-right: 100px;
+}
+.user_right_container {
+  float: left;
+  width: 998px;
+}
+.time_line_box {
+
+  border: 1px solid;
+}
+.user_show_image {
+  width: 200px;
+  margin: 0 auto;
+}
+.user_info_box {
+  border: 1px solid;
+}
+.user_show_count {
+  border: 1px solid;
+  margin-top: 50px;
+}
+.followers_box , .following_box {
+  float: left;
+  font-size: 25px;
+  width: 130px;
+}
+.favorite_movie_content {
+
+  text-align: center;
+}
+.show_movie_count {
+  width: 200px;
+  margin: 0 auto;
+}
+.favorite_movie_content {
+  float: left;
+  width: 250px;
+}
+.best_movie_container {
+  width: 998px;
+}
+.user_info_review_box {
+  float: left;
+  width: 746px;
+}
+.user_show_text_1 {
+  float: left;
+}
+.user_show_image_1 {
+  float: left;
+}
+.user_review_content {
+  margin-bottom: 50px;
+  border: 1px solid;
+}
