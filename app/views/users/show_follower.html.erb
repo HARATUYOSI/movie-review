@@ -1,0 +1,58 @@
+<div class="user_show_container clearfix">
+  <%= render 'side_bar' %>
+  <div class="user_right_container clearfix">
+    <% @user.followers.each do |user| %>
+
+      <div class="user_index_box clearfix">
+        <div class="clearfix">
+          <%= link_to user_path(user.id) do %>
+          <div class="user_image"><%=  attachment_image_tag user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %></div>
+          <div class="user_name"><%= user.name %></div>
+          <% end %>
+        </div>
+        <div class="follow_box">
+          <% user ||= current_user %>
+          <div class="follow_count">
+           <div  class="following" href="<%= following_user_path(user) %>">
+             <div>following</div>
+             <div class="following_count">
+               <%= user.followings.count %>
+             </div>
+           </div>
+        </div>
+      </div>
+      <div class="clearfix">
+      <div class="follow_count">
+        <div class="followers" href="<%= followers_user_path(user) %>">
+          <div>followers</div>
+          <div class="followers_count">
+            <%= user.followers.count %>
+          </div>
+        </div>
+      </div>
+      <div class="follow_btn">
+      <% unless current_user?(user) %>
+        <div id="follow_form">
+      <% if current_user.following?(user) %>
+        <%= form_for(current_user.following_relationships.find_by(following_id: user.id), html: { method: :delete }) do |f| %>
+        <%=  button_tag :type => "submit",class: "btn btn-large btn-primary follow-btn" do %>
+        <i class="fas fa-user-check"></i>フォロー中
+        <% end %>
+        <% end %>
+      <% else %>
+        <%= form_for(current_user.following_relationships.build(following_id: user.id)) do |f| %>
+        <div><%= f.hidden_field :following_id %></div>
+        <%= button_tag :type => "submit", :class =>"btn btn-large btn-primary follow-btn" do %>
+    　　 <i class = "fas fa-user-plus fa-fw"></i> フォロー
+        <% end %>
+        <% end %>
+      <% end %>
+        </div>
+      <% end %>
+    </div>
+    </div>
+    </div>
+    <% end %>
+
+  </div>
+</div>

@@ -1,80 +1,30 @@
 <div class="user_show_container clearfix">
-  <div class="user_left_container">
-    <div class="user_info_box">
-      <div class="user_show_image">
-        <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
-      </div>
-      <div class="user_show_text"><%= @user.name %></div>
-        <div class="user_show_text"><%= @user.introduction %></div>
-
-      <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
-    </div>
-    <div class="clearfix user_show_count">
-      <div class="favorite_box">
-        &#9829;
-        <div><%= @favorite_count %></div>
-        <%= link_to "show","/users/#{@user.id}/favorites"%>
-      </div>
-      <div class="review_box">
-        &#8801;
-        <div><%= @review_count %></div>
-        <%= link_to "show","/users/#{@user.id}/reviews"%>
-      </div>
-      <div class="followers_box">
-        followers
-        <div></div>
-      </div>
-      <div class="following_box">
-        following
-        <div></div>
-      </div>
-    </div>
-  </div>
+  <%= render 'side_bar' %>
   <div class="user_right_container">
     <div class="best_movie_container clearfix">
       <h2>ベストムービー</h2>
-      <% @best_movies.each do |movie| %>
-        <div class="favorite_movie_content">
-          <div>
-            <%= link_to movie_path(movie.movie.id) do%>
-            <%=  attachment_image_tag movie.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
+      <% if @best_movie_count == 0 %>
+       <h4>ベストムービーは登録されていません</h4>
+      <% else %>
+        <% @best_movies.each do |movie| %>
+        <%= render 'movies/favorite_movie', movie: movie %>
+            <% if params[:id].to_i == current_user.id%>
+              <div class="best_movie_link">
+                <%= link_to "削除", "/favorites/#{movie.movie.id}/best_movie/delete" %>
+              </div>
+            <% end %>
           </div>
-          <div><%= movie.movie.title %></div>
-          <% end %>
-          <% if params[:id].to_i == current_user.id%>
-            <%= link_to "削除", "/favorites/#{movie.movie.id}/best_movie/delete" %>
-          <% end %>
-        </div>
+        <% end %>
       <% end %>
     </div>
     <div class="user_favorite_box clearfix">
       <h2>お気に入り作品一覧</h2>
       <% @movies.each do |movie| %>
-        <div class="favorite_movie_content">
-          <div>
-            <%= link_to movie_path(movie.movie.id) do%>
-            <%=  attachment_image_tag movie.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-          </div>
-          <div><%= movie.movie.title %></div>
-          <% end %>
-
-
-          <div class="clearfix show_movie_count">
-            <div class="favorite_box">
-              &#9829;
-            <div><%= movie.movie.favorite_count %></div>
+        <%= render 'movies/favorite_movie', movie: movie %>
+          <% if params[:id].to_i == current_user.id && movie.best_movie == false && @best_movie_count <= 4  %>
+            <div class="best_movie_link">
+              <%= link_to "ベストムービーに追加", "/favorites/#{movie.movie.id}/best_movie" %>
             </div>
-            <div class="star_box">
-              &#9734;
-              <div><%= movie.movie.satr_average %></div>
-            </div>
-            <div class="review_box">
-              &#8801;
-              <div><%= movie.movie.review_count %></div>
-            </div>
-          </div>
-          <% if params[:id].to_i == current_user.id && movie.best_movie == false && @favorite_count <= 4  %>
-            <%= link_to "ベストムービーに追加", "/favorites/#{movie.movie.id}/best_movie" %>
           <% end %>
         </div>
       <% end %>

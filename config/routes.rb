@@ -21,7 +21,12 @@ Rails.application.routes.draw do
       resources :comments, only: [:new, :create, :destroy]
     end
   end
-
+  resources :users do
+    member do
+     get :following, :followers
+    end
+  end
+  resources :relationships, only: [:create, :destroy]
 
   resources :contacts
   resources :genres, only: [:show]

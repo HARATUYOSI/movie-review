@@ -7,12 +7,14 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
   </head>
 
   <body>
     <header class="clearfix">
       <div class="headline_box">
-        <h1 class="title"><%= link_to "MOVIE REVIEW", "#" %></h1>
+        <h1 class="title"><%= link_to "MOVIE REVIEW", root_path %></h1>
       </div>
       <% if admin_signed_in? %>
         <div class="link_tags">

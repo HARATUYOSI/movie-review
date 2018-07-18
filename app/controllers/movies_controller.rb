@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
   def top
+    @movies =Movie.all
+    
   end
   def new
     @casts = Cast.all

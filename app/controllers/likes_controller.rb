@@ -6,7 +6,7 @@ class LikesController < ApplicationController
       count += 1
       review.update(like_count: count)
 
-      redirect_to movie_path(params[:movie_id])
+      redirect_back(fallback_location: root_path)
     end
   end
   def destroy
@@ -16,8 +16,8 @@ class LikesController < ApplicationController
       count = review.like_count
       count -= 1
       review.update(like_count: count)
-    
-      redirect_to movie_path(params[:movie_id])
+
+      redirect_back(fallback_location: root_path)
     end
   end
 end

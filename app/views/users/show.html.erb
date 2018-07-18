@@ -1,35 +1,91 @@
-<div class="user_show_container clearfix">
-  <div class="user_left_container">
-    <div class="user_info_box">
-      <div class="user_show_image">
-        <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+<div class="user_show_container clearfix containew">
+  <div class="row">
+  <%= render 'side_bar' %>
+    <div class="user_right_container co-lg-8">
+      <div class="time_line_box">
+        <% @time_line.each do |t| %>
+          <div class="time_line_content">
+            <div class="clearfix">
+              <div class="user_image">
+                <%= link_to user_path(t.user.id) do %>
+                <%=  attachment_image_tag t.user, :image, :fill, 50, 50, format: 'jpg', fallback: 'mv.png', :size => '50x50'  %>
+              </div>
+              <div class="user_name">
+                <%= t.user.name %>
+                <% end %>
+              <div><%= date_format(t.created_at) %></div>
+              </div>
+            </div>
+          <% if t.has_attribute?(:review) == true %>
+            <div class="clearfix time_line_review_box">
+              <div class="time_line_image">
+                <%= link_to movie_path(t.movie.id) do %>
+                <%=  attachment_image_tag t.movie, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
+              </div>
+              <div class="time_line_review">
+                <p class="time_line_movie_title"><%= t.movie.title %></p>
+                <% end %>
+                <div class="star-position">
+                  <% if t.star == 1 %>
+                    <div class="star-color">★</div>
+                  <% elsif t.star == 2 %>
+                    <div class="star-color">★★</div>
+                  <% elsif t.star == 3 %>
+                    <div class="star-color">★★★</div>
+                  <% elsif t.star == 4 %>
+                    <div class="star-color">★★★★</div>
+                  <% elsif t.star == 5 %>
+                    <div class="star-color">★★★★★</div>
+                  <% end %>
+                </div>
+                <% if t.spoiler == true %>
+                <div class="container_1">
+                <div class="top">
+                </div>
+                <label for="topbtn" class="topbtn">このレビューはネタバレを含みます ≫</label>
+                <input id="topbtn" type="radio" name="oo">
+                <div class="btm">
+                  <div class="">
+                      <%= t.review %>
+                        </div>
+                      <label for="btmbtn" class="btmbtn">≪ 閉じる</label>
+                      <input id="btmbtn" type="radio" name="oo">
+                      </div>
+                      <br>
+                    </div>
+                <% else %>
+                <%= t.review %>
+                <% end %>
+                    <div class="clearfix">
+                      <div class="like_box">
+                        <% if t.favorited_by?(current_user) %>
+                        <%= link_to "いいね！解除", movie_review_like_path(t.movie,t), method: :delete %>
+                        <% else %>
+                        <%= link_to "いいね！", "/movies/#{t.movie.id}/reviews/#{t.id}/likes" , method: :post %>
+                        <% end %>
+                        <div class="balloon2-left">
+                          <P><%= t.like_count %></P>
+                        </div>
+                      </div>
+                      <div class="comment_box">
+                        <%= link_to "コメントする", "/movies/#{t.movie.id}/reviews/#{t.id}/comments/new"  %>
+                        <div class="balloon2-left">
+                        <%= t.comment_count %>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          <% else %>
+          　<%= link_to movie_path(t.movie.id) do %>
+            <div class="clearfix">
+            　<div class="time_line_image"><%=  attachment_image_tag t.movie, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %></div>
+              <div class="time_line_text"><%= t.movie.title %><% end %>をお気に入り登録しました!</div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-      <div class="user_show_text"><%= @user.name %></div>
-        <div class="user_show_text"><%= @user.introduction %></div>
-
-      <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
     </div>
-    <div class="clearfix user_show_count">
-      <div class="favorite_box">
-        &#9829;
-        <div><%= @favorite_count %></div>
-      </div>
-      <div class="review_box">
-        &#8801;
-        <div><%= @review_count %></div>
-      </div>
-      <div class="followers_box">
-        followers
-        <div></div>
-      </div>
-      <div class="following_box">
-        following
-        <div></div>
-      </div>
-    </div>
-
-  </div>
-  <div class="time_line_box">
-    タイムライン
   </div>
 </div>
