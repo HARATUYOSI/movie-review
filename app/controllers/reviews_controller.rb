@@ -16,7 +16,11 @@ class ReviewsController < ApplicationController
        reviews= Review.where(movie_id: params[:movie_id])
          star = reviews.pluck(:star).sum / reviews.count.to_f
          star = star.round(1)
-       movie.update(satr_average: star)
+         review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+         favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+         week_count = review_week.length + favorite_week.length
+       movie.update(satr_average: star, week: week_count)
+  
       redirect_to movie_path(params[:movie_id])
     end
   end
@@ -48,7 +52,10 @@ class ReviewsController < ApplicationController
       reviews= Review.where(movie_id: params[:movie_id])
         star = reviews.pluck(:star).sum / reviews.count.to_f
         star = star.round(1)
-      movie.update(satr_average: star)
+        review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+        favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+        week_count = review_week.length + favorite_week.length
+      movie.update(satr_average: star, week: week_count)
       redirect_to movie_path(params[:movie_id])
     end
   end

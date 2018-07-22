@@ -10,23 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_15_054451) do
-
-  create_table "Movies", force: :cascade do |t|
-    t.string "title"
-    t.text "image_id"
-    t.date "release_date"
-    t.date "release_end_date"
-    t.integer "genre_id"
-    t.integer "country_id"
-    t.text "stroy"
-    t.integer "release_year_id"
-    t.integer "favorite_count", default: 0
-    t.integer "review_count", default: 0
-    t.integer "satr_average", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2018_07_19_160723) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -112,6 +96,23 @@ ActiveRecord::Schema.define(version: 2018_07_15_054451) do
     t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.text "image_id"
+    t.date "release_date"
+    t.date "release_end_date"
+    t.integer "genre_id"
+    t.integer "country_id"
+    t.text "stroy"
+    t.integer "release_year_id"
+    t.integer "favorite_count", default: 0
+    t.integer "review_count", default: 0
+    t.float "satr_average", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "week", default: 0
   end
 
   create_table "relationships", force: :cascade do |t|

@@ -121,11 +121,12 @@ header {
 .movie_show_image {
   width: 300px;
   height: 400px;
-  float: left;
+
 }
 .movie_text {
   float: left;
   padding-left: 20px;
+  font-size: 18px;
 }
 .text_float {
   float: left;
@@ -187,6 +188,13 @@ color: black;
   text-align: center;
   font-size: 25px;
 }
+.star_box_2,.favorite_box_3, .review_box_3 {
+  float: left;
+  width: 100px;
+  text-align: center;
+  font-size: 50px;
+  border: 1px solid;
+}
 .review_box {
   float: left;
   width: 66px;
@@ -198,9 +206,11 @@ color: black;
   width: 200px;
   margin: 0 auto;
 }
-.show_movie_count {
+
+.show_movie_count_2 {
   width: 300px;
   margin: 0 auto;
+  margin-top: 10px;
 }
 .top_movie_dete {
   text-align: center;
@@ -231,7 +241,11 @@ color: black;
 }
 .top_review_content {
   margin: 0 50px;
-  width: 600px;
+  width: 740px;
+  border: 1px solid;
+  float: left;
+  margin-bottom: 20px;
+  height: 400px;
 }
 .top_review_text {
   padding-right: 30px;
@@ -261,7 +275,11 @@ color: black;
   width: 900px;
 }
 .movie_text_content {
-  padding-bottom: 10px;
+  padding: 10px 0;
+}
+.movie_text_content_1 {
+  float: left;
+  margin-right: 20px;
 }
 .movie_new_container {
   width: 900px;
@@ -329,9 +347,11 @@ color: black;
   border: 1px solid;
   float: left;
   margin-bottom: 50px;
+  margin-top: 50px;
 
 }
 .movie_content_left {
+  padding-top: 50px;
   width: 400px;
   float: left;
 
@@ -346,7 +366,13 @@ color: black;
 }
 .favorite_btn_box {
   width: 150px;
-  margin: 0 auto;
+  margin: 10px auto;
+  text-align: center;
+
+}
+.review_btn_box_1 {
+  width: 150px;
+  margin: 10px auto;
   text-align: center;
 }
 .link_btn_box {
@@ -385,10 +411,16 @@ color: black;
 }
 
 .review_container {
-  border: 1px solid;
+
   float: right;
   width: 900px;
   margin-right: 200px;
+
+}
+.review_container h2 {
+  background-color: #dfdfdf;
+  border: 1px solid;
+  padding: 10px 0 10px 10px;
 }
 .hidden_box {
     margin: 2em 0;/*前後の余白*/
@@ -481,7 +513,7 @@ color: black;
   float: left;
   width: 250px;
   border: 1px solid;
-  margin-right: 20px;
+  margin: 0 10px;
   padding: 10px;
 }
 .best_movie_container {
@@ -491,6 +523,12 @@ color: black;
   float: left;
   width: 706px;
   margin: 20px;
+}
+.user_info_review_box_2 {
+  float: left;
+  width: 400px;
+  margin: 20px;
+  word-wrap: break-word;
 }
 .user_show_text {
   font-size: 18px;
@@ -539,11 +577,12 @@ color: black;
   float: left;
   width: 230px;
   text-align: center;
-  margin-right: 20px;
+  margin-left: 30px;
   padding: 10px;
 }
 .star-color {
   color: #ffd400;
+  font-size: 20px;
 }
 .review_at {
   margin-top: 20px;
@@ -554,10 +593,26 @@ color: black;
 .review_text {
   margin-top: 20px;
   font-size: 18px;
+  height: 130px;
+  word-wrap: break-word;
+}
+.review_text_2 {
+  margin-top: 20px;
+  font-size: 18px;
+  border-bottom: 1px solid;
+  padding-bottom: 30px;
+  padding-left: 15px;
+}
+.review_text_3 {
+  margin-top: 20px;
+  font-size: 18px;
+  padding-bottom: 30px;
+  padding-left: 15px;
 }
 .container_1 {
   margin: 0 auto;
   text-align: left;
+  margin-top: 20px;
 }
 .container_1 input {
   display: none;
@@ -571,44 +626,32 @@ color: black;
   color: #ccc;
 }
 .container_1 .top {
-
   background: #fff;
 }
 .container_1 .btm {
   height: 0;
   overflow: hidden;
-
   width: 706px;
 }
-.container_1 .topbtn,
-.container_1 .btmbtn {
+.container_1 .topbtn_,
+.container_1 .btmbtn_ {
   text-align: left;
   display: block;
 
   margin-top: 20px;
 
 }
-.container_1 .topbtn2,
-.container_1 .btmbtn2 {
-  text-align: center;
-  display: block;
-  width: 80px;
-  margin: 0 auto;
-}
+
 .container_1 input:checked + .btm {
   margin-top: -36px;
   height: auto;
-
+  width: 400px;
+  height: 70px;
   background: #fff;
   position: relative;
   z-index: 2;
 }
-.container_1{
-  padding: 0px;
-}
-.topbtn {
-  color: red;
-}
+
 .user_name {
   float: left;
 }
@@ -717,4 +760,158 @@ color: black;
 .comment_box {
   float: left;
   margin-left: 20px;
+}
+.favorite_movie_title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.top_movie_container {
+  width: 1620px;
+  margin: 0 auto;
+}
+.example, .example_2 {
+  position: relative;
+  width: 200px;
+  margin: 0 auto;
+  }
+ .example_3, .example_4 {
+   position: relative;
+   width: 300px;
+   margin: 0 auto;
+ }
+.example p {
+  position: absolute;
+  top: 0;/*画像の左上に配置*/
+  left: 0;
+  margin: 0; /*余計な隙間を除く*/
+  color: white;/*文字を白に*/
+  background: skyblue;/*背景色*/
+  font-size: 15px;
+  line-height: 1;/*行高は1に*/
+  padding: 5px 10px;/*文字周りの余白*/
+  }
+  .example_2 p {
+    position: absolute;
+    top: 0;/*画像の左上に配置*/
+    left: 0;
+    margin: 0; /*余計な隙間を除く*/
+    color: white;/*文字を白に*/
+    background: red;/*背景色*/
+    font-size: 15px;
+    line-height: 1;/*行高は1に*/
+    padding: 5px 10px;/*文字周りの余白*/
+    }
+    .example_3 p {
+      position: absolute;
+      top: 0;/*画像の左上に配置*/
+      left: 0;
+      margin: 0; /*余計な隙間を除く*/
+      color: white;/*文字を白に*/
+      background: red;/*背景色*/
+      font-size: 40px;
+      line-height: 1;/*行高は1に*/
+      padding: 5px 10px;/*文字周りの余白*/
+      }
+      .example_4 p {
+        position: absolute;
+        top: 0;/*画像の左上に配置*/
+        left: 0;
+        margin: 0; /*余計な隙間を除く*/
+        color: white;/*文字を白に*/
+        background: skyblue;/*背景色*/
+        font-size: 30px;
+        line-height: 1;/*行高は1に*/
+        padding: 5px 10px;/*文字周りの余白*/
+        }
+.example img, .example_2 img, .example_3 img, .example_4 {
+  width: 100%;
+  }
+.cast_box, .director_box {
+  float: left;
+  margin-right: 20px
+}
+.review_content_2 {
+  float: left;
+  margin-bottom: 20px;
+  width: 700px;
+}
+.review_content {
+  border: 1px solid;
+  margin-bottom: 20px;
+}
+.review_user_info {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 18px;
+}
+.review_text_box_2 {
+  margin:0 15px;
+  word-wrap: break-word;
+}
+.good_link {
+  color: red;
+}
+.comment_new_container {
+  width: 900px;
+  margin: 50px auto;
+  float: left;
+}
+.comment_new_container {
+  border: 1px solid;
+}
+.review_movie_image {
+  float: left;
+  margin-top: 20px;
+}
+.spoiler_text {
+  color: red;
+}
+#comment_comment {
+  width: 500px;
+}
+#new_comment {
+  width: 700px;
+  padding: 10px 0 10px 15px;
+}
+.comment_comment {
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+  font-size: 18px;
+}
+.comment_count_box {
+  border-bottom: 1px solid;
+  padding: 15px;
+  font-size: 18px;
+}
+
+.user_like_box {
+  float: left;
+  border: 1px solid;
+  font-size: 18px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.user_like_image {
+  float: left;
+}
+.user_like_image {
+  margin: 0 5px;
+  margin-top: 10px;
+}
+.user_like_images {
+  width: 450px;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+.user_like_headline {
+  background-color: #dfdfdf;
+  text-align: center;
+  margin: 0px;
+  padding: 10px 0;
+}
+.comment_like_container {
+  width: 1450px;
+  margin: 0 auto;
 }

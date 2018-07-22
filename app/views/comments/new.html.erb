@@ -1,71 +1,128 @@
-<div class="review_content">
-  <div class="clearfix">
-    <div class="top_review_image">
-      <%= attachment_image_tag @review.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
-    </div>
-    <div class="top_user_text">
-      <div>
-        <%= @review.user.name %>
-      </div>
-      <div>
-        <%= @review.created_at.strftime('%Y/%m/%d') %>
-      </div>
-    </div>
-  </div>
- <div class="star-position">
-   <% if @review.star == 1 %>
-     <div class="star-color">★</div>
-   <% elsif @review.star == 2 %>
-     <div class="star-color">★★</div>
-   <% elsif @review.star == 3 %>
-     <div class="star-color">★★★</div>
-   <% elsif @review.star == 4 %>
-     <div class="star-color">★★★★</div>
-   <% elsif @review.star == 5 %>
-     <div class="star-color">★★★★★</div>
-   <% end %>
- </div>
-   <%= @review.review %>
-   <%= @review.comment_count %>
-</div>
-<div>
-  <% @comments.each do |comment| %>
-    <div class="clearfix">
+<div class="comment_like_container">
+<div class="comment_new_container clearfix">
+  <div class="review_comment_box">
+  <div class="clearfix comment_comment">
+  <div class="review_content_2">
+    <div class="clearfix review_user_info">
       <div class="top_review_image">
-        <%= attachment_image_tag comment.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
+        <%= link_to user_path(@review.user.id) do %>
+        <%= attachment_image_tag @review.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
       </div>
       <div class="top_user_text">
         <div>
-          <%= comment.user.name %>
+          <%= @review.user.name %>
+          <% end %>
         </div>
         <div>
-          <%= comment.created_at.strftime('%Y/%m/%d') %>
+          <%= simple_time(@review.created_at) %>
         </div>
       </div>
     </div>
-    <% if comment.spoiler == true %>
-      <div class="hidden_box">
-        <label for="label-<%=comment.id%>">クリックして表示</label>
-        <input type="checkbox" id="label-<%=comment.id%>"/>
-
-          <div class="hidden_show">
-            <% if comment.user_id == current_user.id %>
-              <%= link_to "削除", movie_review_comment_path(params[:movie_id],@review,comment) %>
-            <% end %>
-            <%= comment.comment %>
-         </div>
-       </div>
-     <% else %>
-       <% if comment.user_id == current_user.id %>
-         <%= link_to "削除", movie_review_comment_path(params[:movie_id],@review,comment) %>
-       <% end %>
-       <%= comment.comment %>
-       
+    <div class="review_text_box_2" %>
+   <div class="star-position">
+     <% if @review.star == 1 %>
+       <div class="star-color">★</div>
+     <% elsif @review.star == 2 %>
+       <div class="star-color">★★</div>
+     <% elsif @review.star == 3 %>
+       <div class="star-color">★★★</div>
+     <% elsif @review.star == 4 %>
+       <div class="star-color">★★★★</div>
+     <% elsif @review.star == 5 %>
+       <div class="star-color">★★★★★</div>
      <% end %>
+   </div>
+   <% if @review.spoiler == true %>
+   <div class="container_1 review_text_3">
+   <div class="top">
+   </div>
+   <label for="topbtn_<%= @review.id %>" class="topbtn_<%= @review.id %>">このレビューネタバレを含みます ≫</label>
+   <input id="topbtn_<%= @review.id %>" type="radio" name="oo_<%= @review.id %>">
+   <div class="btm">
+     <div class="review_text">
+         <%= @review.review %>
+           </div>
+
+         </div>
+         <br>
+
+         <!--container--></div>
+     <% else %>
+     <div class="review_text_2">
+       <%= @review.review %>
+     </div>
+   <% end %>
+
+
+  </div>
+</div>
+  <div class="review_movie_image">
+    <%= attachment_image_tag @review.movie, :image, :fill, 150, 200, format: 'jpg', fallback: 'mv.png', :size => '150x200' %>
+  </div>
+</div>
+  <div>
+    <div class="comment_count_box">
+      <i class="fas fa-comment"></i>
+      <%= @review.comment_count %>
+    </div>
+    <% @comments.each do |comment| %>
+      <div class="clearfix review_user_info">
+        <div class="top_review_image">
+          <%= attachment_image_tag comment.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
+        </div>
+        <div class="top_user_text">
+          <div>
+            <%= comment.user.name %>
+          </div>
+          <div>
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+        </div>
+      </div>
+      <% if comment.spoiler == true %>
+      <div class="container_1 review_text_2">
+      <div class="top">
+      </div>
+      <label for="topbtn_<%= comment.id %>" class="topbtn_<%= comment.id %>">このレビューネタバレを含みます ≫</label>
+      <input id="topbtn_<%= comment.id %>" type="radio" name="oo_<%= comment.id %>">
+      <div class="btm">
+        <div class="review_text">
+            <%= comment.comment %>
+              </div>
+
+            </div>
+            <br>
+
+            <!--container--></div>
+        <% else %>
+        <div class="review_text_2">
+          <%= comment.comment %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<div>
+  <%= form_for @comment,:url => {:action => :create} do |f| %>
+  <%= f.check_box :spoiler,{},checked_value = "true",unchecked_value = "false" %>
+  <label class="spoiler_text">ネタバレあり</label>
+
+    <%= f.text_field :comment %>
+    <%= f.submit "送信",class: "post_btn" %>
   <% end %>
 </div>
-<%= form_for @comment,:url => {:action => :create} do |f| %>
-  <%= f.text_area :comment %>
-  <%= f.check_box :spoiler,{},checked_value = "true",unchecked_value = "false" %>
-  <%= f.submit "送信",class: "post_btn" %>
-<% end %>
+</div>
+
+</div>
+<div class="user_like_box">
+  <h2 class="user_like_headline">いいね！したユーザー</h2>
+  <div class="clearfix user_like_images">
+  <% @like_users.each do |user| %>
+  <div class="user_like_image">
+  <%= link_to user_path(user.user.id) do %>
+  <%= attachment_image_tag user.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
+  <% end %>
+</div>
+  <% end %>
+</div>
+</div>
+</div>

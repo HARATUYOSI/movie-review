@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
     @review = Review.find_by(id: params[:review_id])
     @comment = Comment.new
     @comments = Comment.where(review_id: params[:review_id])
+    @like_users = Like.where(review_id:  params[:review_id])
   end
   def create
     comment = Comment.new(comment_params)

@@ -4,7 +4,10 @@ class FavoritesController < ApplicationController
       movie = Movie.find(params[:movie_id])
       count = movie.favorite_count
       count += 1
-      movie.update(favorite_count: count)
+      review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+      favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+      week_count = review_week.length + favorite_week.length
+      movie.update(favorite_count: count,week: week_count)
       redirect_to movie_path(params[:movie_id])
     end
   end
@@ -14,7 +17,10 @@ class FavoritesController < ApplicationController
       movie = Movie.find(params[:movie_id])
       count = movie.favorite_count
       count -= 1
-      movie.update(favorite_count: count)
+      review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+      favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
+      week_count = review_week.length + favorite_week.length
+      movie.update(favorite_count: count,week: week_count)
       redirect_to movie_path(params[:movie_id])
     end
   end

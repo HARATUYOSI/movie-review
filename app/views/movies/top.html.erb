@@ -1,93 +1,49 @@
+
 <div class="top_container">
   <div class="top_content">
     <div class="top_headline">
       <h2>今話題の映画</h2>
     </div>
-    <div class="top_movie_cotents clearfix">
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
-        </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="clearfix top_movie_count">
-          <div class="favorite_box">
-            &#9829;
-          <div>200</div>
+    <div class="clearfix top_movie_container" >
+    <% @movies.order("week DESC").first(6).each do |movie| %>
+    <div class="top_movie_content">
+          <div>
+            <%= link_to movie_path(movie.id) do%>
+            <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
           </div>
-          <div class="star_box">
-            &#9734;
-            <div>5</div>
-          </div>
-          <div class="review_box">
-            &#8801;
-            <div>120</div>
-          </div>
-        </div>
+          <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
+          <% end %>
+          <div class="clearfix show_movie_count">
+            <div class="favorite_box_2">
+              <i class="fas fa-heart"></i>
+              <div><%= movie.favorite_count %></div>
+            </div>
+            <div class="star_box">
+              <i class="fas fa-star"></i>
+              <div><%= movie.satr_average %></div>
+            </div>
+            <div class="review_box_2">
+              <i class="fas fa-comments"></i>
+              <div><%= movie.review_count %></div>
+            </div>
+
       </div>
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
-        </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="clearfix top_movie_count">
-          <div class="favorite_box">
-            &#9829;
-          <div>200</div>
-          </div>
-          <div class="star_box">
-            &#9734;
-            <div>5</div>
-          </div>
-          <div class="review_box">
-            &#8801;
-            <div>120</div>
-          </div>
-        </div>
-      </div>
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
-        </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="clearfix top_movie_count">
-          <div class="favorite_box">
-            &#9829;
-          <div>200</div>
-          </div>
-          <div class="star_box">
-            &#9734;
-            <div>5</div>
-          </div>
-          <div class="review_box">
-            &#8801;
-            <div>120</div>
-          </div>
-        </div>
-      </div>
+
     </div>
+    <% end %>
+  </div>
   </div>
   <div class="top_content">
     <div class="top_headline">
       <h2>公開中の映画</h2>
     </div>
-    <div class="clearfix">
-    <% @movies.each do |movie| %>
+    <div class="clearfix top_movie_container">
+<% @movies.each do |movie| %>
+    <% if movie.release_date <= Time.now && movie.release_end_date >= Time.now %>
   <div class="top_movie_content">
-
-        <div>
+        <div class="example_2">
           <%= link_to movie_path(movie.id) do%>
+          <p>公開中</p>
           <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
         </div>
         <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
@@ -110,102 +66,145 @@
 
   </div>
   <% end %>
+<% end %>
 </div>
   <div class="top_content">
     <div class="top_headline">
       <h2>公開予定の映画</h2>
     </div>
-    <div class="top_movie_cotents clearfix">
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
+    <div class="top_movie_container clearfix">
+      <% @movies.each do |movie| %>
+      <% if movie.release_date >= Time.now  %>
+      <div class="top_movie_content">
+
+            <div class="example">
+
+              <%= link_to movie_path(movie.id) do%>
+              <p><%= movie.release_date %> 公開</p>
+              <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
+            </div>
+            <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
+            <% end %>
+            <div class="clearfix show_movie_count">
+              <div class="favorite_box_2">
+                <i class="fas fa-heart"></i>
+                <div><%= movie.favorite_count %></div>
+              </div>
+              <div class="star_box">
+                <i class="fas fa-star"></i>
+                <div><%= movie.satr_average %></div>
+              </div>
+              <div class="review_box_2">
+                <i class="fas fa-comments"></i>
+                <div><%= movie.review_count %></div>
+              </div>
+
         </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="top_movie_dete">
-          <div>y/m/d公開予定</div>
-        </div>
+
       </div>
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
-        </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="top_movie_dete">
-          <div>y/m/d公開予定</div>
-        </div>
-      </div>
-      <div class="top_movie_cotent">
-        <div class="top_movie_image">
-          img
-        </div>
-        <div class="top_movie_title">
-          <h3>
-            title
-          </h4>
-        </div>
-        <div class="top_movie_dete">
-          <div>y/m/d公開予定</div>
-        </div>
-      </div>
+      <% end %>
+      <% end %>
     </div>
   </div>
   <div class="top_review_container">
     <div class="top_review_headline">
       <h2>新着レビュー</h2>
     </div>
-    <div class="top_review_content">
+    <div class="clearfix">
+    <% @reviews.each do |review| %>
+    <div class="top_review_content clearfix">
+    <div class="user_info_review_box_2">
       <div class="clearfix">
-        <div class="top_review_box">
-          <div class="clearfix">
-            <div class="top_review_image">
-              img
-            </div>
-            <div class="top_user_text">
-              <div>
-                name
-              </div>
-              <div>
-                y/m/d
-              </div>
-            </div>
-          </div>
-          <div class="top_review_text">
-            aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-          </div>
+        <%= link_to user_path(review.user.id) do %>
+        <div class="user_show_image_1">
+          <%=  attachment_image_tag review.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
         </div>
-        <div class="top_movie_box">
-          <div class="top_movie_image">
-            img
+        <div class="user_show_text_1">
+          <div><%= review.user.name %></div>
+          <% end %>
+          <div class="review_at"><%= date_format(review.created_at) %></div>
+        </div>
+      </div>
+      <div class="review_text_box">
+        <div class="star-position">
+          <% if review.star == 1 %>
+            <div class="star-color">★</div>
+          <% elsif review.star == 2 %>
+            <div class="star-color">★★</div>
+          <% elsif review.star == 3 %>
+            <div class="star-color">★★★</div>
+          <% elsif review.star == 4 %>
+            <div class="star-color">★★★★</div>
+          <% elsif review.star == 5 %>
+            <div class="star-color">★★★★★</div>
+          <% end %>
+        </div>
+        <% if review.spoiler == true %>
+        <div class="container_1 review_text">
+        <div class="top">
+        </div>
+        <label for="topbtn_<%= review.id %>" class="topbtn_<%= review.id %>">このレビューネタバレを含みます ≫</label>
+        <input id="topbtn_<%= review.id %>" type="radio" name="oo_<%= review.id %>">
+        <div class="btm">
+          <div class="review_text">
+              <%= review.review %>
+                </div>
+
+              </div>
+              <br>
+
+              <!--container--></div>
+          <% else %>
+          <div class="review_text">
+            <%= review.review %>
           </div>
-          <div class="top_movie_title">
-            <h3>
-              title
-            </h4>
+        <% end %>
+        <div class="clearfix">
+          <div class="like_box">
+            <% if review.favorited_by?(current_user) %>
+
+            <% else %>
+            <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
+            <% end %>
+            <div class="balloon2-left">
+              <P><%= review.like_count %></P>
+            </div>
           </div>
-          <div class="clearfix top_movie_count">
-            <div class="favorite_box">
-              &#9829;
-            <div>200</div>
-            </div>
-            <div class="star_box">
-              &#9734;
-              <div>5</div>
-            </div>
-            <div class="review_box">
-              &#8801;
-              <div>120</div>
+          <div class="comment_box">
+            <%= link_to "コメントする", "/movies/#{review.movie.id}/reviews/#{review.id}/comments/new"  %>
+            <div class="balloon2-left">
+            <%= review.comment_count %>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="favorite_movie_content_2">
+      <div>
+        <%= link_to movie_path(review.movie.id) do%>
+        <%=  attachment_image_tag review.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
+      </div>
+      <div class="favorite_movie_title"><h3><%= review.movie.title %></h3></div>
+      <% end %>
+      <div class="clearfix show_movie_count">
+        <div class="favorite_box_2">
+          <i class="fas fa-heart"></i>
+          <div><%= review.movie.favorite_count %></div>
+        </div>
+        <div class="star_box">
+          <i class="fas fa-star"></i>
+          <div><%= review.movie.satr_average %></div>
+        </div>
+        <div class="review_box_2">
+          <i class="fas fa-comments"></i>
+          <div><%= review.movie.review_count %></div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    <% end %>
+</div>
+
+</div>
 </div>

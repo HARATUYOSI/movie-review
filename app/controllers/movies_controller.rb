@@ -1,7 +1,8 @@
 class MoviesController < ApplicationController
   def top
-    @movies =Movie.all
-    
+    @movies = Movie.all
+    reviews = Review.last(6)
+    @reviews = reviews.sort{|f,s| s.created_at <=> f.created_at}
   end
   def new
     @casts = Cast.all
@@ -104,7 +105,8 @@ class MoviesController < ApplicationController
   end
   def show
     @movie = Movie.find(params[:id])
-
+    @directors = DirectorMovie.where(movie_id: params[:id])
+    @casts = CastMovie.where(movie_id: params[:id])
     @favorite = Favorite.find_by(movie_id: params[:id],user_id: current_user.id )
      reviews= Review.where(movie_id: params[:id])
      if reviews.count == 0
