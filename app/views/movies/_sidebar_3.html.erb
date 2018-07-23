@@ -1,0 +1,13 @@
+<div class="list_show_headline">
+  <h2><%= "#{country.name}製作の映画一覧" %></h2>
+</div>
+<div class="link_list">
+  <div class="link_list_headline">
+    <h4>製作国一覧</h4>
+  </div>
+  <% countries.each do |country| %>
+    <div class="list_content">
+      <%= link_to "#{country.name}", country_path(country.id) %>
+    </div>
+  <% end %>
+</div>

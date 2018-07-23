@@ -14,13 +14,15 @@ class ReviewsController < ApplicationController
       count += 1
       if movie.update(review_count: count)
        reviews= Review.where(movie_id: params[:movie_id])
+
          star = reviews.pluck(:star).sum / reviews.count.to_f
          star = star.round(1)
+
          review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
          favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
          week_count = review_week.length + favorite_week.length
        movie.update(satr_average: star, week: week_count)
-  
+
       redirect_to movie_path(params[:movie_id])
     end
   end

@@ -109,14 +109,15 @@ header {
   margin-top: 50px;
   border: 1px solid;
   padding: 20px;
+  width: 1100px;
 }
 .movie_image {
-
   width: 200px;
-  height: 300px;
+  height: 220px;
+}
+.movie_content_left {
   float: left;
-
-
+  width: 300px;
 }
 .movie_show_image {
   width: 300px;
@@ -125,8 +126,8 @@ header {
 }
 .movie_text {
   float: left;
-  padding-left: 20px;
   font-size: 18px;
+  padding: 0 5px;
 }
 .text_float {
   float: left;
@@ -171,7 +172,9 @@ header {
   color: white;
   line-height: 50px;
   }
-
+.movie_text_director_content, .movie_text_cast_content {
+  margin: 5px 0;
+}
 .favorite_box a, .review_box a, .followers_box a, .following_box a{
 display: block;
 position: absolute;
@@ -194,7 +197,27 @@ color: black;
   text-align: center;
   font-size: 50px;
   border: 1px solid;
+  position: relative;
 }
+.favorite_box_3_delete,.review_box_3_edit {
+  float: left;
+  width: 100px;
+  text-align: center;
+  font-size: 50px;
+  border: 1px solid;
+  position: relative;
+  background-color: #EEFF41;
+}
+.star_box_2 a,.favorite_box_3 a, .review_box_3 a, .review_box_3_delete a {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height:100%;
+  width: 100%;
+  color: black;
+}
+
 .review_box {
   float: left;
   width: 66px;
@@ -274,12 +297,24 @@ color: black;
 .contact_comment {
   width: 900px;
 }
+.movie_text_deirector_box, .movie_text_cast_box {
+  padding: 10px;
+}
+.movie_text_stroy_box {
+  padding: 0 10px;
+  word-wrap: break-word;
+  width: 798px;
+}
 .movie_text_content {
-  padding: 10px 0;
+  padding: 10px 5px;
+  float: left;
 }
 .movie_text_content_1 {
   float: left;
   margin-right: 20px;
+}
+.movie_text_content_headline {
+  padding-left: 10px;
 }
 .movie_new_container {
   width: 900px;
@@ -320,7 +355,7 @@ color: black;
   padding-top: 10px;
 }
 .movie_contents {
-  width: 900px;
+  width: 1100px;
   float: left;
 }
 .link_list {
@@ -329,10 +364,20 @@ color: black;
   border: 1px solid;
   margin-right: 40px;
   margin-top: 50px;
-  padding-left: 5px;
+
+}
+.movie_content_left_container {
+  float: left;
+  width: 200px;
+  padding-top: 40px;
+  margin-right: 50px;
 }
 .link_show_container {
-  width: 1200px;
+  width: 1400px;
+  margin: 0 auto;
+}
+.link_show_container_2 {
+  width: 1100px;
   margin: 0 auto;
 }
 .list_content {
@@ -341,6 +386,7 @@ color: black;
 }
 .list_show_headline {
   text-align: center;
+  margin-top: 50px;
 }
 .movie_content_right {
   width: 900px;
@@ -555,8 +601,8 @@ color: black;
   text-align: center;
   margin-top: 30px;
 }
-.review_box a:hover, .followers_box a:hover, .following_box a:hover, .favorite_box a:hover {
-  background-color: #EEFF41;
+.review_box a:hover, .followers_box a:hover, .following_box a:hover, .favorite_box a:hover, {
+  background-color: red;
   text-decoration: none;
 }
 .following_count, .followers_count {
@@ -769,8 +815,9 @@ color: black;
 .top_movie_container {
   width: 1620px;
   margin: 0 auto;
+  height: 350px;
 }
-.example, .example_2 {
+.example, .example_2, .example_5, .example_6 {
   position: relative;
   width: 200px;
   margin: 0 auto;
@@ -824,6 +871,28 @@ color: black;
         line-height: 1;/*行高は1に*/
         padding: 5px 10px;/*文字周りの余白*/
         }
+        .example_5 p {
+          position: absolute;
+          top: 0;/*画像の左上に配置*/
+          left: 0;
+          margin: 0; /*余計な隙間を除く*/
+          color: white;/*文字を白に*/
+          background: red;/*背景色*/
+          font-size: 25px;
+          line-height: 1;/*行高は1に*/
+          padding: 5px 10px;/*文字周りの余白*/
+          }
+          .example_6 p {
+            position: absolute;
+            top: 0;/*画像の左上に配置*/
+            left: 0;
+            margin: 0; /*余計な隙間を除く*/
+            color: white;/*文字を白に*/
+            background: skyblue;/*背景色*/
+            font-size: 20px;
+            line-height: 1;/*行高は1に*/
+            padding: 5px 10px;/*文字周りの余白*/
+            }
 .example img, .example_2 img, .example_3 img, .example_4 {
   width: 100%;
   }
@@ -914,4 +983,22 @@ color: black;
 .comment_like_container {
   width: 1450px;
   margin: 0 auto;
+}
+.review_form_container {
+  width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50px;
+}
+#review_review {
+  width: 800px;
+  height: 300px;
+}
+.swiper-container {
+    width: 600px;
+    height: 300px;
+}
+.link_list_headline {
+  background-color: #dfdfdf;
+  padding: 5px 0;
 }

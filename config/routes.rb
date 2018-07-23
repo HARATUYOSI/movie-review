@@ -4,9 +4,16 @@ Rails.application.routes.draw do
   :registrations => 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'movies#top'
-  resources :users, only: [:edit, :update, :show]
-  get 'users/:id/favorites' => 'users#favorites'
-  get 'users/:id/reviews' => 'users#reviews'
+  resources :users, only: [:edit, :update, :show] do
+    member do
+      get 'favorites'
+
+
+      get 'reviews'
+    end
+  end
+
+
   get '/favorites/:id/best_movie' => 'favorites#best_movie'
   get 'favorites/:id/best_movie/delete' => 'favorites#best_movie_delete'
   get 'movies/link' => 'movies#link'

@@ -14,46 +14,64 @@
       <% end %>
     </div>
     <div class="clearfix show_movie_count_2">
-      <div class="favorite_box_3">
-        <i class="fas fa-heart"></i>
-        <div><%= @movie.favorite_count %></div>
-      </div>
+      <% if user_signed_in? %>
+        <% if @movie.favorited_movie_by?(current_user,@movie) %>
+          <%= link_to movie_favorite_path(@movie), method: :delete do %>
+          <div class="favorite_box_3_delete">
+            <i class="fas fa-heart"></i>
+            <div><%= @movie.favorite_count %></div>
+          </div>
+          <% end %>
+        <% else %>
+          <%= link_to movie_favorites_path(@movie), method: :post do %>
+          <div class="favorite_box_3">
+            <i class="fas fa-heart"></i>
+            <div><%= @movie.favorite_count %></div>
+          </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="favorite_box_3">
+          <i class="fas fa-heart"></i>
+          <div><%= @movie.favorite_count %></div>
+        </div>
+      <% end %>
       <div class="star_box_2">
         <i class="fas fa-star"></i>
         <div><%= @movie.satr_average %></div>
       </div>
-      <div class="review_box_3">
-        <i class="fas fa-comments"></i>
-        <div><%= @movie.review_count %></div>
+      <% if user_signed_in? %>
+        <% if @review.blank? %>
+        <%= link_to new_movie_review_path(@movie) do %>
+          <div class="review_box_3">
+            <i class="fas fa-comments"></i>
+            <div><%= @movie.review_count %></div>
+          </div>
+        </div>
+        <% end %>
+        <% else %>
+        <%= link_to "/movies/#{@movie.id}/reviews/#{@review.id}/edit" do %>
+          <div class="review_box_3_edit">
+            <i class="fas fa-comments"></i>
+            <div><%= @movie.review_count %></div>
+          </div>
+        <% end %>
       </div>
-
-</div>
-    <div class="favorite_btn_box">
-      <% if  @favorite.blank?%>
-        <%= link_to "お気に入りに登録", movie_favorites_path(@movie),  method: :post,class: "btn btn-primary"%>
-      <% else %>
-        <%= link_to "お気に入りに登録中", "/movies/#{@movie.id}/favorites/#{@favorite.id}",  method: :delete,class: "btn btn-danger"%>
       <% end %>
-    </div>
-
-      <% if @review.blank? %>
-        <div class="review_btn_box_1">
-          <%= link_to "レビューを投稿する", new_movie_review_path(@movie),class: "btn btn-success" %>
+      <%else %>
+        <div class="review_box_3">
+          <i class="fas fa-comments"></i>
+          <div><%= @movie.review_count %></div>
         </div>
-      <% else %>
-        <div class="review_btn_box_1">
-          <%= link_to "レビューを編集", "/movies/#{@movie.id}/reviews/#{@review.id}/edit",class: "btn btn-success" %>
-        </div>
-        <div class="review_btn_box_1">
-          <%= link_to "レビューを削除", "/movies/#{@movie.id}/reviews/#{@review.id}",  method: :delete,class: "btn btn-danger" %>
-        </div>
+      </div>
       <% end %>
-
   </div>
+
+
   <div class="movie_content_right">
     <div class="movie_text clearfix">
       <div class="clearfix">
-        <div class="movie_text_content">
+        <div class="movie_text_headline">
           <h2><%= @movie.title %> (<%= link_to @movie.release_year.year, release_year_path(@movie.release_year.id) %>年公開の作品)</h2>
         </div>
         <div class="movie_text_content_1">
@@ -69,20 +87,20 @@
           ジャンル: <%= link_to @movie.genre.name, genre_path(@movie.genre.id) %>
         </div>
       </div>
-      <div class="movie_text_content clearfix">
+      <div class="movie_text_director_content clearfix">
         <p>監督</p>
         <% @directors.each do |director| %>
          <div class="director_box"><%= link_to director.director.name, director_path(director.director.id)%></div>
         <% end %>
 
       </div>
-      <div class="movie_text_content clearfix">
+      <div class="movie_text_cast_content clearfix">
         <p>出演者</p>
         <% @casts.each do |cast| %>
          <div class="cast_box"><%= link_to cast.cast.name, cast_path(cast.cast.id) %></div>
         <% end %>
       </div>
-      <div class="movie_text_content">
+      <div class="movie_text_syory_content">
         <p>ストーリー</p>
         <%= @movie.stroy %>
       </div>
@@ -90,6 +108,80 @@
   </div>
   <div class="review_container">
     <h2><%= "#{@movie.title}に投稿されたレビュー一覧" %></h2>
+    <% if @review %>
+    <div class="review_content">
+      <div class="clearfix review_user_info">
+        <div class="top_review_image">
+          <%= link_to user_path(@review.user.id) do %>
+          <%= attachment_image_tag @review.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %>
+        </div>
+        <div class="top_user_text">
+          <div>
+            <%= @review.user.name %>
+            <% end %>
+          </div>
+          <div>
+            <%= simple_time(@review.created_at) %>
+          </div>
+        </div>
+      </div>
+      <div class="review_text_box_2">
+     <div class="star-position">
+       <% if @review.star == 1 %>
+         <div class="star-color">★</div>
+       <% elsif @review.star == 2 %>
+         <div class="star-color">★★</div>
+       <% elsif @review.star == 3 %>
+         <div class="star-color">★★★</div>
+       <% elsif @review.star == 4 %>
+         <div class="star-color">★★★★</div>
+       <% elsif @review.star == 5 %>
+         <div class="star-color">★★★★★</div>
+       <% end %>
+     </div>
+     <% if @review.spoiler == true %>
+     <div class="container_1 review_text_2">
+     <div class="top">
+     </div>
+     <label for="topbtn_<%= @review.id %>" class="topbtn_<%= @review.id %>">このレビューネタバレを含みます ≫</label>
+     <input id="topbtn_<%= @review.id %>" type="radio" name="oo_<%= @review.id %>">
+     <div class="btm">
+       <div class="review_text">
+           <%= @review.review %>
+             </div>
+
+           </div>
+           <br>
+
+           <!--container--></div>
+       <% else %>
+       <div class="review_text_2">
+         <%= @review.review %>
+       </div>
+     <% end %>
+     <div class="clearfix">
+       <div class="like_box">
+         <% if @review.favorited_by?(current_user) %>
+           <%= link_to "いいね！", movie_review_like_path(@review.movie,@review) , method: :delete, class: "good_link" %>
+         <% else %>
+         <%= link_to "いいね！", "/movies/#{@review.movie.id}/reviews/#{@review.id}/likes" , method: :post %>
+         <% end %>
+         <div class="balloon2-left">
+           <P><%= @review.like_count %></P>
+         </div>
+       </div>
+       <div class="comment_box">
+         <%= link_to "コメントする", "/movies/#{@review.movie.id}/reviews/#{@review.id}/comments/new"  %>
+         <div class="balloon2-left">
+         <%= @review.comment_count %>
+         </div>
+       </div>
+     </div>
+  </div>
+    </div>
+    <% end %>
+
+
     <% @reviews.each do |review| %>
       <div class="review_content">
         <div class="clearfix review_user_info">
@@ -143,10 +235,12 @@
        <% end %>
        <div class="clearfix">
          <div class="like_box">
-           <% if review.favorited_by?(current_user) %>
-             <%= link_to "いいね！", movie_review_like_path(review.movie,review) , method: :delete, class: "good_link" %>
-           <% else %>
-           <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
+           <% if user_signed_in? %>
+             <% if review.favorited_by?(current_user) %>
+               <%= link_to "いいね！", movie_review_like_path(review.movie,review) , method: :delete, class: "good_link" %>
+             <% else %>
+             <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
+             <% end %>
            <% end %>
            <div class="balloon2-left">
              <P><%= review.like_count %></P>

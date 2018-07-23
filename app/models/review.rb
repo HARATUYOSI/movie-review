@@ -8,4 +8,5 @@ class Review < ApplicationRecord
   def favorited_by?(user)
    likes.where(user_id: user.id).exists?
   end
+  
 end

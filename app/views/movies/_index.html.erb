@@ -1,0 +1,97 @@
+<% movies.each do |movie| %>
+<div class="movie_contents">
+<div class="movie_content clearfix">
+  <div class="movie_content_left_container">
+    <div class="movie_image">
+      <% if movie.release_date <= Time.now && movie.release_end_date >= Time.now %>
+        <div class="example_5">
+          <%= link_to movie_path(movie) do %>
+          <p>公開中</p>
+          <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+          <% end %>
+        </div>
+      <% elsif movie.release_date >= Time.now %>
+        <div class="example_6">
+          <%= link_to movie_path(movie) do %>
+          <p> <%= movie.release_date %> 公開</p>
+          <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+          <% end %>
+        </div>
+      <% else  movie.release_end_date <= Time.now %>
+        <%= link_to movie_path(movie) do %>
+        <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="clearfix show_movie_count">
+      <div class="favorite_box_2">
+        <i class="fas fa-heart"></i>
+        <div><%= movie.favorite_count %></div>
+      </div>
+      <div class="star_box">
+        <i class="fas fa-star"></i>
+        <div><%= movie.satr_average %></div>
+      </div>
+      <div class="review_box_2">
+        <i class="fas fa-comments"></i>
+        <div><%= movie.review_count %></div>
+      </div>
+    </div>
+  </div>
+  <div class="movie_text">
+    <div class="movie_text_content_headline">
+      <h2><%= movie.title %></h2>
+
+    </div>
+    <div class="clearfix">
+      <div class="movie_text_content">
+        公開年月日: <%= movie.release_date%>
+      </div>
+      <div class="movie_text_content">
+        公開終了年月日: <%= movie.release_end_date%>
+      </div>
+      <div class="movie_text_content">
+        製作国: <%=link_to movie.country.name, country_path(movie.country.id)%>
+      </div>
+      <div class="movie_text_content">
+        ジャンル: <%= link_to movie.genre.name, genre_path(movie.genre.id) %>
+      </div>
+    </div>
+    <div class="clearfix movie_text_deirector_box">
+      <% directors = DirectorMovie.where(movie_id: movie.id)%>
+      <% if directors %>
+      監督
+      <div class="clearfix">
+      <% directors.each do |director| %>
+
+         <div class="director_box"><%=  link_to director.director.name,  director_path(director.director.id)%></div>
+
+      <% end %>
+      <% end %>
+       </div>
+    </div>
+    <div class="clearfix movie_text_cast_box">
+      <% casts = CastMovie.where(movie_id: movie.id)%>
+      <% if casts %>
+      出演者
+      <div class="clearfix">
+      <% casts.each do |cast| %>
+
+        <div class="cast_box"><%= link_to cast.cast.name, cast_path(cast.cast.id) %></div>
+
+      <% end %>
+      </div>
+      <% end %>
+    </div>
+    <div class="movie_text_stroy_box">
+      ストーリー
+      <div>
+        <%= movie.stroy %>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<% end %>
+</div>

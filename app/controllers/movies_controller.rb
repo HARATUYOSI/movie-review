@@ -107,17 +107,16 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @directors = DirectorMovie.where(movie_id: params[:id])
     @casts = CastMovie.where(movie_id: params[:id])
-    @favorite = Favorite.find_by(movie_id: params[:id],user_id: current_user.id )
-     reviews= Review.where(movie_id: params[:id])
-     if reviews.count == 0
-       star = 0
-       @star = star
-     else
-       star = reviews.pluck(:star).sum / reviews.count.to_f
-       @star = star.round(1)
-     end
+    if user_signed_in?
      @review = Review.find_by(movie_id: params[:id],user_id: current_user.id)
-     @reviews = Review.where(movie_id: params[:id])
+   end
+     reviews = Review.where(movie_id: params[:id])
+     ids = reviews.pluck(:user_id)
+     if @review
+
+     ids.delete(@review.user_id)
+   end
+     @reviews = Review.where(movie_id: params[:id], user_id: ids)
   end
 
   private
