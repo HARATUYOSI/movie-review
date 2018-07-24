@@ -1,8 +1,27 @@
 class MoviesController < ApplicationController
   def top
-    @movies = Movie.all
+    topic = Movie.where(updated_at:1.weeks.ago..Time.now,week: 1..Float::INFINITY)
+    topic = topic.sort{|f,s| s.week <=> f.week}.first(30)
+    @topic_1 = topic[0..5]
+    @topic_2 = topic[6..11]
+    @topic_3 = topic[12..17]
+    @topic_4 = topic[18..23]
+    @topic_5 = topic[24..29]
+    now = Movie.where("release_date <= ?", Time.now).where("release_end_date >= ?", Time.now)
+    @now_1 = now[0..5]
+    @now_2 = now[6..11]
+    @now_3 = now[12..17]
+    @now_4 = now[18..23]
+    @now_5 = now[24..29]
+    coming_soon = Movie.where(release_date: Time.now..Float::INFINITY)
+    @coming_soon_1 = coming_soon[0..5]
+    @coming_soon_2 = coming_soon[6..11]
+    @coming_soon_3 = coming_soon[11..17]
+    @coming_soon_4 = coming_soon[17..23]
+    @coming_soon_5 = coming_soon[23..29]
     reviews = Review.last(6)
     @reviews = reviews.sort{|f,s| s.created_at <=> f.created_at}
+    @movies = Movie.all
   end
   def new
     @casts = Cast.all
@@ -96,14 +115,8 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
   end
-  def link
-    @genres = Genre.all
-    @release_years = ReleaseYear.all
-    @casts = Cast.all
-    @directors = Director.all
-    @countries = Country.all
-  end
   def show
+
     @movie = Movie.find(params[:id])
     @directors = DirectorMovie.where(movie_id: params[:id])
     @casts = CastMovie.where(movie_id: params[:id])
@@ -120,6 +133,7 @@ class MoviesController < ApplicationController
   end
 
   private
+  Movie.order(week: :DESC).first(30)
 	  def movie_params
 	    params.require(:movie).permit(:title, :image, :release_date, :release_end_date, :genre_id, :country_id, :stroy, :release_year_id, :favorite_count, :review_count, :satr_average)
 	  end

@@ -1,10 +1,28 @@
-<div class="user_left_container col-lg-4">
+<div class="user_top_container">
   <div class="user_info_box">
-    <div class="user_show_image">
-      <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+    <div class="clearfix">
+      <div class="user_show_image_2">
+        <%= attachment_image_tag @user, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
+      </div>
+      <div class="user_show_text">
+        <div class="user_show_name"><%= @user.name %></div>
+        <div><%= @user.introduction %></div>
+      </div>
     </div>
-    <div class="user_show_text"><%= @user.name %></div>
-      <div class="user_show_text"><%= @user.introduction %></div>
+      <div class="user_link_box">
+        <% if params[:id].to_i == current_user.id%>
+          <%= link_to "プロフィール編集", edit_user_path(current_user.id), class: "btn btn-primary" %>
+        <% end %>
+        <% unless current_user?(@user) %>
+          <div id="follow_form">
+          <% if current_user.following?(@user) %>
+            <%= render 'unfollow' %>
+          <% else %>
+            <%= render 'follow' %>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
   </div>
   <div class="clearfix user_show_count">
     <div class="favorite_box">
@@ -37,18 +55,5 @@
         </a>
       </div>
   </div>
-  <div class="user_link_box">
-    <% if params[:id].to_i == current_user.id%>
-      <%= link_to "プロフィール編集", edit_user_path(current_user.id), class: "btn btn-primary" %>
-    <% end %>
-    <% unless current_user?(@user) %>
-      <div id="follow_form">
-      <% if current_user.following?(@user) %>
-        <%= render 'unfollow' %>
-      <% else %>
-        <%= render 'follow' %>
-      <% end %>
-      </div>
-    <% end %>
-  </div>
+
 </div>

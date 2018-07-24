@@ -7,16 +7,12 @@ Rails.application.routes.draw do
   resources :users, only: [:edit, :update, :show] do
     member do
       get 'favorites'
-
-
       get 'reviews'
     end
   end
-
-
   get '/favorites/:id/best_movie' => 'favorites#best_movie'
   get 'favorites/:id/best_movie/delete' => 'favorites#best_movie_delete'
-  get 'movies/link' => 'movies#link'
+
   resources :movies do
     resources :casts, only: [:new, :create, :destroy]
     resources :directors, only: [:new, :create, :destroy]
@@ -35,7 +31,7 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :reviews, only: [:index]
-  resources :contacts
+  resources :contacts, only: [:index, :create, :new]
   resources :genres, only: [:show]
   resources :release_years, only: [:show]
   resources :countries, only: [:show]

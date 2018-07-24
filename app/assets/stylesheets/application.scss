@@ -28,6 +28,7 @@
  display: block;
  clear: both;
 }
+
 a {
   text-decoration: none;
   color: black;
@@ -53,9 +54,8 @@ header {
 }
 .link_tags {
   float: right;
+  // font-size: 20px;
   line-height: 80px;
-  margin-right: 40px;
-  font-size: 20px;
 }
 .link_tag {
   float: left;
@@ -144,6 +144,9 @@ header {
 .top_headline {
   text-align: center;
   margin-bottom: 20px;
+  border-bottom: 2px solid;
+  width: 250px;
+  margin: 20px auto;
 }
 .top_movie_image {
   height: 230px;
@@ -243,6 +246,10 @@ color: black;
 }
 .top_review_headline {
   text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid;
+  width: 250px;
+  margin: 20px auto;
 }
 .top_review_image {
   height: 100px;
@@ -525,6 +532,12 @@ color: black;
   margin: 0 auto;
   margin-top: 30px;
 }
+.user_show_image_2 {
+  width: 200px;
+  margin-left: 30px;
+  margin-top: 30px;
+  float: left;
+}
 .user_info_box {
   border: 1px solid;
   margin-top: 50px;
@@ -559,8 +572,12 @@ color: black;
   float: left;
   width: 250px;
   border: 1px solid;
-  margin: 0 10px;
+  margin: 0 5px;
   padding: 10px;
+}
+.top_movie_contents {
+  width: 1560px;
+  margin: 0 auto;
 }
 .best_movie_container {
   width: 998px;
@@ -576,9 +593,16 @@ color: black;
   margin: 20px;
   word-wrap: break-word;
 }
+.user_show_name {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 .user_show_text {
   font-size: 18px;
-  margin: 15px 20px;
+  margin: 30px 40px;
+  float: left;
+  word-wrap: break-word;
+  width: 688px;
 }
 .user_show_text_1 {
   float: left;
@@ -597,12 +621,13 @@ color: black;
 }
 .user_link_box {
   width: 150px;
-  margin: 0 auto;
+  margin-left: 800px;
+margin-bottom: 30px;
   text-align: center;
   margin-top: 30px;
 }
 .review_box a:hover, .followers_box a:hover, .following_box a:hover, .favorite_box a:hover, {
-  background-color: red;
+  background-color: #EEFF41;
   text-decoration: none;
 }
 .following_count, .followers_count {
@@ -995,10 +1020,181 @@ color: black;
   height: 300px;
 }
 .swiper-container {
-    width: 600px;
-    height: 300px;
+    width: 1650px;
+    height: 400px;
 }
 .link_list_headline {
   background-color: #dfdfdf;
   padding: 5px 0;
+}
+.pulldown_username, .pulldown_userimage {
+  float: left;
+  margin-left: 20px;
+}
+
+.swiper-slide {
+  width: 1680px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.menu {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    max-width: 1000px;
+    width: 200px;
+    z-index: 5;
+}
+
+.menu > li {
+    float: left;
+    width: 150px;
+    height: 80px;
+    line-height: 80px;
+    background: black;
+    z-index: 5;
+}
+
+.menu > li a {
+    display: block;
+    color: #fff;
+    z-index: 5;
+}
+
+.menu > li a:hover {
+    color: #999;
+    z-index: 5;
+}
+
+ul.menu__second-level {
+    visibility: hidden;
+    opacity: 0;
+
+    z-index: 5;
+}
+
+ul.menu__third-level {
+    visibility: hidden;
+    opacity: 0;
+    z-index: 5;
+}
+
+ul.menu__fourth-level {
+    visibility: hidden;
+    opacity: 0;
+    z-index: 5;
+}
+
+.menu > li:hover {
+    background: black;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    z-index: 5;
+}
+
+.menu__second-level li {
+    border-top: 1px solid #111;
+    z-index: 5;
+}
+
+.menu__third-level li {
+    border-top: 1px solid #111;
+    z-index: 5;
+}
+
+.menu__second-level li a:hover {
+    background: #111;
+    z-index: 5;
+}
+
+.menu__third-level li a:hover {
+    background: #2a1f1f;
+    z-index: 5;
+}
+
+.menu__fourth-level li a:hover {
+    background: #1d0f0f;
+    z-index: 5;
+}
+
+/* 下矢印 */
+.init-bottom:after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 0 0 15px;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: 5;
+}
+
+/* floatクリア */
+.menu:before,
+.menu:after {
+    content: " ";
+    display: table;
+    z-index: 5;
+}
+
+.menu:after {
+    clear: both;
+    z-index: 5;
+}
+
+.menu {
+    *zoom: 1;
+    z-index: 5;
+}
+.menu > li.menu__single {
+    position: relative;
+    z-index: 5;
+}
+
+li.menu__single ul.menu__second-level {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    background: black;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    z-index: 5;
+}
+
+li.menu__single:hover ul.menu__second-level {
+    top: 50px;
+    visibility: visible;
+    opacity: 1;
+    text-align: center;
+    z-index: 5;
+}
+.new_user {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.sign_up_headline {
+  width: 300px;
+  text-align: center;
+  margin: 0 auto;
+}
+.user_top_container {
+  width: 1000px;
+  margin: 0 auto;
 }

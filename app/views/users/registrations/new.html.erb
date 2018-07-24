@@ -1,5 +1,6 @@
-<h2>Sign</h2>
-
+<div class="sign_up_headline">
+  <h2>新規登録</h2>
+</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -27,7 +28,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "登録" %>
   </div>
 <% end %>
 

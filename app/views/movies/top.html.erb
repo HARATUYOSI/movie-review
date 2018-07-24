@@ -1,124 +1,47 @@
-<div class="sample sample01">
-	  <div class="swiper-container">
-		    <div class="swiper-wrapper">
-		      <div class="swiper-slide pic1">a</div>
-		      <div class="swiper-slide pic2">s</div>
-		      <div class="swiper-slide pic3">samp</div>
-		      <div class="swiper-slide pic4">e</div>
-		    </div>
 
-		    <div class="swiper-pagination"></div>
 
-		    <div class="swiper-button-prev"></div>
-		    <div class="swiper-button-next"></div>
-		  </div>
-		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="top_container">
   <div class="top_content">
     <div class="top_headline">
       <h2>今話題の映画</h2>
     </div>
-    <div class="clearfix top_movie_container" >
-    <% @movies.order("week DESC").first(6).each do |movie| %>
-    <div class="top_movie_content">
-          <div>
-            <%= link_to movie_path(movie.id) do%>
-            <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-          </div>
-          <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
-          <% end %>
-          <div class="clearfix show_movie_count">
-            <div class="favorite_box_2">
-              <i class="fas fa-heart"></i>
-              <div><%= movie.favorite_count %></div>
-            </div>
-            <div class="star_box">
-              <i class="fas fa-star"></i>
-              <div><%= movie.satr_average %></div>
-            </div>
-            <div class="review_box_2">
-              <i class="fas fa-comments"></i>
-              <div><%= movie.review_count %></div>
-            </div>
+  <%= render 'movies/swiper_1',movies_1: @topic_1,movies_2: @topic_2,movies_3: @topic_3,movies_4: @topic_4,movies_5: @topic_5 %>
 
-      </div>
-
-    </div>
-    <% end %>
-  </div>
   </div>
   <div class="top_content">
     <div class="top_headline">
       <h2>公開中の映画</h2>
     </div>
-    <div class="clearfix top_movie_container">
-<% @movies.each do |movie| %>
-    <% if movie.release_date <= Time.now && movie.release_end_date >= Time.now %>
-  <div class="top_movie_content">
-        <div class="example_2">
-          <%= link_to movie_path(movie.id) do%>
-          <p>公開中</p>
-          <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-        </div>
-        <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
-        <% end %>
-        <div class="clearfix show_movie_count">
-          <div class="favorite_box_2">
-            <i class="fas fa-heart"></i>
-            <div><%= movie.favorite_count %></div>
-          </div>
-          <div class="star_box">
-            <i class="fas fa-star"></i>
-            <div><%= movie.satr_average %></div>
-          </div>
-          <div class="review_box_2">
-            <i class="fas fa-comments"></i>
-            <div><%= movie.review_count %></div>
-          </div>
-
-    </div>
+    <%= render 'movies/swiper_1',movies_1: @now_1,movies_2: @now_2,movies_3: @now_3,movies_4: @now_4,movies_5: @now_5 %>
 
   </div>
-  <% end %>
-<% end %>
-</div>
   <div class="top_content">
     <div class="top_headline">
       <h2>公開予定の映画</h2>
     </div>
-    <div class="top_movie_container clearfix">
-      <% @movies.each do |movie| %>
-      <% if movie.release_date >= Time.now  %>
-      <div class="top_movie_content">
+    <%= render 'movies/swiper_1',movies_1: @coming_soon_1,movies_2: @coming_soon_2,movies_3: @coming_soon_3,movies_4: @coming_soon_4,movies_5: @coming_soon_5 %>
 
-            <div class="example">
 
-              <%= link_to movie_path(movie.id) do%>
-              <p><%= movie.release_date %> 公開</p>
-              <%=  attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-            </div>
-            <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
-            <% end %>
-            <div class="clearfix show_movie_count">
-              <div class="favorite_box_2">
-                <i class="fas fa-heart"></i>
-                <div><%= movie.favorite_count %></div>
-              </div>
-              <div class="star_box">
-                <i class="fas fa-star"></i>
-                <div><%= movie.satr_average %></div>
-              </div>
-              <div class="review_box_2">
-                <i class="fas fa-comments"></i>
-                <div><%= movie.review_count %></div>
-              </div>
 
-        </div>
 
-      </div>
-      <% end %>
-      <% end %>
-    </div>
+
+
+
+
+
   </div>
   <div class="top_review_container">
     <div class="top_review_headline">
@@ -228,7 +151,7 @@
 </div>
 <script type="text/javascript">
 window.addEventListener('DOMContentLoaded', function() {
-  var swiper = new Swiper('.sample01 .swiper-container', {
+  var swiper = new Swiper('.sample01 .swiper-container_1', {
     pagination: '.swiper-pagination',
     paginationClickable: true,
     slidesPerView: 1,
@@ -241,6 +164,19 @@ window.addEventListener('DOMContentLoaded', function() {
     loop: true
   });
 }, false);
-
+window.addEventListener('DOMContentLoaded', function() {
+  var swiper = new Swiper('.sample02 .swiper-container_2', {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides : true,
+    effect: "slide",
+    autoplay: '6000',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    loop: true
+  });
+}, false);
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>
