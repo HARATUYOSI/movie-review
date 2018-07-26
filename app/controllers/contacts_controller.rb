@@ -8,6 +8,8 @@ class ContactsController < ApplicationController
     @contact.user_id = current_user.id
     if @contact.save
       redirect_to root_path
+    else
+      render 'new'
     end
   end
   def index
