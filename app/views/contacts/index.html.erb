@@ -1,17 +1,19 @@
 <div class="contacts_index_container">
   <table border="1"  cellspacing="0" cellpadding="0" align="left" class="contacts_index_table">
     <tr>
-      <th>ID</th>
-      <th>USER-ID</th>
-      <th>USER-NAME</th>
+      <th class="contact_id">ID</th>
+      <th class="contact_user_id">USER-ID</th>
+      <th class="contact_user_name">USER-NAME</th>
       <th class="contact_comment">COMMENT</th>
+      <th class="contact_link">LINK</th>
     </tr>
     <% @contacts.each do |contact| %>
     <tr>
       <td><%= contact.id%></td>
       <td><%= contact.user.id%></td>
       <td><%= contact.user.name%></td>
-      <td><%= contact.comment%></td>
+      <td class="contact_comment"><%= contact.comment%></td>
+      <td class="contact_link"><%= link_to "削除", contact_path(contact.id), method: :delete,class: "btn btn-danger"	%></td>
     </tr>
     <% end %>
   </table>

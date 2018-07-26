@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: [:create, :destroy]
   resources :reviews, only: [:index]
-  resources :contacts, only: [:index, :create, :new]
+  resources :contacts, only: [:index, :create, :new, :destroy]
   resources :genres, only: [:show]
   resources :release_years, only: [:show]
   resources :countries, only: [:show]

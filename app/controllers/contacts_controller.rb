@@ -13,6 +13,12 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
   end
+  def destroy
+    contact = Contact.find(params[:id])
+    if contact.destroy
+      redirect_to contacts_path
+    end
+  end
   private
     def contact_params
       params.require(:contact).permit(:comment, :user_id)
