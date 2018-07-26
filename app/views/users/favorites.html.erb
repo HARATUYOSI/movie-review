@@ -2,14 +2,16 @@
   <%= render 'side_bar' %>
   <div class="user_right_container">
     <div class="best_movie_container clearfix">
-      <h2>ベストムービー</h2>
+      <div class="best_movie_headline">
+        <h2>ベストムービー</h2>
+      </div>
       <% if @best_movie_count == 0 %>
        <h4>ベストムービーは登録されていません</h4>
       <% else %>
         <% @best_movies.each do |movie| %>
-        <%= render 'movies/favorite_movie', movie: movie %>
+        <%= render 'movies/favorite_movie_2', movie: movie %>
             <% if params[:id].to_i == current_user.id%>
-              <div class="best_movie_link">
+              <div class="best_movie_link_2">
                 <%= link_to "削除", "/favorites/#{movie.movie.id}/best_movie/delete" %>
               </div>
             <% end %>
@@ -18,9 +20,11 @@
       <% end %>
     </div>
     <div class="user_favorite_box clearfix">
-      <h2>お気に入り作品一覧</h2>
+      <div class="favorite_movie_headline">
+        <h2>お気に入り作品一覧</h2>
+      </div>
       <% @movies.each do |movie| %>
-        <%= render 'movies/favorite_movie', movie: movie %>
+        <%= render 'movies/favorite_movie_2', movie: movie %>
           <% if params[:id].to_i == current_user.id && movie.best_movie == false && @best_movie_count <= 4  %>
             <div class="best_movie_link">
               <%= link_to "ベストムービーに追加", "/favorites/#{movie.movie.id}/best_movie" %>

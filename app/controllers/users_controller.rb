@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+before_action :access_authority, only: [:show,:edit]
   def index
     @users = User.all
   end
@@ -26,7 +26,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @favorite_count = Favorite.where(user_id: params[:id]).count
     @review_count = Review.where(user_id: params[:id]).count
-    @reviews = Review.where(user_id: params[:id])
+    reviews = Review.where(user_id: params[:id])
+    @reviews = reviews.sort{|f,s| s.created_at <=> f.created_at}
   end
   def edit
     @user = User.find(params[:id])
@@ -57,6 +58,11 @@ class UsersController < ApplicationController
     render 'show_follower'
   end
   private
+  def access_authority
+      unless   admin_signed_in? ||  user_signed_in? && current_user.id == params[:id].to_i
+        redirect_to user_session_path
+      end
+    end
   def user_params
       params.require(:user).permit(:name, :introduction, :email, :image)
   end

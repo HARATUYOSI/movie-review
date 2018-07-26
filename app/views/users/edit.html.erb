@@ -1,35 +1,39 @@
 <div class="user_edit_container">
-  <div class="headline_box">
-    <h2 class="useredit_headline">登録情報編集 </h2>
+  <div class="user_edit_headline">
+    <h2 class="useredit_headline">プロフィール編集 </h2>
   </div>
+  <div class="user_edit_box">
   <% if @user.errors.full_messages %>
     <div class="errors_message"><% @user.errors.full_messages.each do |message| %></div>
     <%= message %>
     <% end %>
   <% end %>
-  <table class="edit_table" border="1">
+
     <%= form_for(@user) do |f| %>
-    <tr>
-      <div class="filed">
-          <td class="td_color"><%= f.label :氏名,class: "label_name" %><br /></td>
-          <td><%= f.text_field :name%></td>
-      </div>
-    </tr>
-    <tr>
+    <div class="field">
+　　　<%= f.attachment_field :image %>
+<%=  attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
+</div>
       <div class="field">
-        <td class="td_color"><%= f.label :自己紹介,class: "label_name" %><br /></td>
-        <td><%= f.text_field :introduction %></td>
+          <%= f.label :ニックネーム,class: "label_name" %><br />
+          <%= f.text_field :name%>
       </div>
-    </tr>
-    <tr>
+
       <div class="field">
-        <td class="td_color"><%= f.label :メールアドレス,class: "label_name" %><br /></td>
-        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        <%= f.label :自己紹介,class: "label_name" %><br />
+        <%= f.text_field :introduction %>
       </div>
-    </tr>
-    <%= f.attachment_field :image %>
-  </table>
+
+      <div class="field">
+        <%= f.label :メールアドレス,class: "label_name" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+
+
   <div class="actions">
-    <%= f.submit "編集", class:"edit_btn" %>
+    <%= f.submit "編集", class:"btn btn-primary" %>
   </div>
   <% end %>
+</div>
+</div>

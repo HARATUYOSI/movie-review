@@ -166,7 +166,7 @@ header {
 }
 .favorite_box ,.review_box, .followers_box, .following_box {
   float: left;
-  width: 66px;
+  width: 90px;
   height: 90px;
   text-align: center;
   font-size: 25px;
@@ -193,6 +193,14 @@ color: black;
   width: 66px;
   text-align: center;
   font-size: 25px;
+  border: 1px solid;
+}
+.star_box_3,.favorite_box_4, .review_box_4{
+  float: left;
+  width: 59px;
+  text-align: center;
+  font-size: 25px;
+  border: 1px solid;
 }
 .star_box_2,.favorite_box_3, .review_box_3 {
   float: left;
@@ -223,7 +231,7 @@ color: black;
 
 .review_box {
   float: left;
-  width: 66px;
+  width: 90px;
   text-align: center;
   font-size: 25px;
 
@@ -524,8 +532,13 @@ color: black;
   margin-right: 100px;
 }
 .user_right_container {
-  float: left;
-  width: 998px;
+  margin: 0 auto;
+  width: 1100px;
+}
+.user_right_container_2 {
+  margin: 0 auto;
+  width: 944px;
+  padding-top: 50px;
 }
 .user_show_image {
   width: 200px;
@@ -538,13 +551,14 @@ color: black;
   margin-top: 30px;
   float: left;
 }
+
 .user_info_box {
-  border: 1px solid;
+  border-bottom: 1px solid;
   margin-top: 50px;
   word-wrap: break-word;
 }
 .user_show_count {
-  border: 1px solid;
+  border-bottom: 1px solid;
 
 }
 .followers_box , .following_box {
@@ -552,13 +566,52 @@ color: black;
   font-size: 19px;
   width: 92px;
 }
+#user_image {
+  padding-bottom: 10px;
+}
+#user_name, #user_email {
+  width: 500px;
+}
+#user_introduction {
+  width: 500px;
+  height: 200px;
+}
+.field {
+  margin-bottom: 15px;
+}
 .favorite_movie_content {
 
   text-align: center;
 }
+.user_edit_headline {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  border-bottom: 2px solid;
+}
+.user_edit_box {
+  width: 600px;
+  margin: 0 auto;
+  border: 1px solid;
+  padding: 30px;
+  margin-top: 40px;
+}
 .show_movie_count {
   width: 200px;
   margin: 0 auto;
+  margin: 15px 0;
+}
+.best_movie_headline, .user_review_headline {
+  width: 300px;
+  text-align: center;
+  margin: 50px auto;
+  border-bottom: 1px solid;
+}
+.favorite_movie_headline {
+  width: 400px;
+  text-align: center;
+  margin: 50px auto;
+  border-bottom: 1px solid;
 }
 .favorite_movie_content {
   float: left;
@@ -566,6 +619,15 @@ color: black;
   border: 1px solid;
   margin-right: 20px;
   padding: 10px;
+}
+.favorite_movie_content_3 {
+  float: left;
+  width: 200px;
+  border: 1px solid;
+  margin: 0 10px;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 .top_movie_content {
   text-align: center;
@@ -579,9 +641,7 @@ color: black;
   width: 1560px;
   margin: 0 auto;
 }
-.best_movie_container {
-  width: 998px;
-}
+
 .user_info_review_box {
   float: left;
   width: 706px;
@@ -616,6 +676,16 @@ color: black;
   margin-bottom: 50px;
   border: 1px solid;
 }
+.time_line_headline {
+  width: 300px;
+  text-align: center;
+  border-bottom: 2px solid;
+  margin: 30px auto;
+}
+.time_line_box {
+  width: 1000px;
+  margin: 20px auto;
+}
 .following, .followers {
   float: left;
 }
@@ -638,9 +708,21 @@ margin-bottom: 30px;
   width: 200px;
   margin: 0 auto;
 }
+.favorite_movie_title_3 {
+  border-bottom: 1px solid;
+  white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  margin: 0 auto;
+}
 .best_movie_link {
   border-top: 1px solid;
   width: 200px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.best_movie_link_2 {
+  border-top: 1px solid;
   margin: 0 auto;
   padding-top: 10px;
 }
@@ -650,6 +732,10 @@ margin-bottom: 30px;
   text-align: center;
   margin-left: 30px;
   padding: 10px;
+}
+.best_movie_image {
+  float: left;
+  margin: 10px 5px;
 }
 .star-color {
   color: #ffd400;
@@ -666,6 +752,7 @@ margin-bottom: 30px;
   font-size: 18px;
   height: 130px;
   word-wrap: break-word;
+  width: 800px;
 }
 .review_text_2 {
   margin-top: 20px;
@@ -756,13 +843,14 @@ margin-bottom: 30px;
 }
 .user_index_box {
   border: 1px solid;
-  width: 300px;
+  width: 452px;
   float: left;
-  margin-right: 20px;
+  margin: 0 10px;
 }
 .time_line_image {
   margin-left: 20px;
   float: left;
+  text-align: center;
 }
 .time_line_text {
   padding-left: 25px;
@@ -774,9 +862,11 @@ margin-bottom: 30px;
   float: left;
   padding-left: 25px;
   font-size: 18px;
+  width: 800px;
 }
 .time_line_review_box {
   margin-top: 20px;
+  border-bottom: 1px solid;
 }
 .time_line_movie_title {
   font-weight: bold;
@@ -784,7 +874,7 @@ margin-bottom: 30px;
 .time_line_content {
   border: 1px solid;
   margin-bottom: 30px;
-  padding-bottom: 20px;
+
 }
 .balloon2-left {
  	position: relative;
@@ -825,10 +915,10 @@ margin-bottom: 30px;
 	margin: 0;
 	padding: 0;
 }
-.like_box {
-  float: left;
+.time_line_favorite_box {
+  padding-bottom: 30px;
 }
-.comment_box {
+.like_box,.comment_box {
   float: left;
   margin-left: 20px;
 }
@@ -1061,7 +1151,7 @@ margin-bottom: 30px;
 
 .menu > li {
     float: left;
-    width: 150px;
+    width: 200px;
     height: 80px;
     line-height: 80px;
     background: black;

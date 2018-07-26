@@ -1,6 +1,6 @@
 <div class="user_show_container clearfix">
   <%= render 'side_bar' %>
-  <div class="user_right_container clearfix">
+  <div class="user_right_container_2 clearfix">
     <% @user.followers.each do |user| %>
 
       <div class="user_index_box clearfix">
@@ -50,9 +50,19 @@
         </div>
       <% end %>
     </div>
-    </div>
-    </div>
-    <% end %>
+  </div>
+    <div class="best_movie_box clearfix">
+    <% best_movies = Favorite.where(user_id: user.id,best_movie: true).each do |movie| %>
 
+      <div class="best_movie_image">
+        <%=  attachment_image_tag movie.movie, :image, :fill, 80, 100, format: 'jpg', fallback: 'mv.png', :size => '80x100'  %>
+      </div>
+
+    <% end %>
+    </div>
+    </div>
+
+    <% end %>
+</div>
   </div>
 </div>
