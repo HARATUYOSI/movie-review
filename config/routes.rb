@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     member do
       get 'favorites'
       get 'reviews'
+      post 'unsubscribe'
     end
   end
   get '/favorites/:id/best_movie' => 'favorites#best_movie'

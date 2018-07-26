@@ -10,8 +10,8 @@
       </div>
     </div>
       <div class="user_link_box">
-        <% if params[:id].to_i == current_user.id%>
-          <%= link_to "プロフィール編集", edit_user_path(current_user.id), class: "btn btn-primary" %>
+        <% if  admin_signed_in? || params[:id].to_i == current_user.id%>
+          <%= link_to "プロフィール編集", edit_user_path(params[:id]), class: "btn btn-primary" %>
         <% end %>
         <% unless current_user?(@user) %>
           <div id="follow_form">

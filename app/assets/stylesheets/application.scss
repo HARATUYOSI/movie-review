@@ -67,6 +67,8 @@ header {
 /* user_index */
 .user_index_table {
   width: 1300px;
+  border-collapse: collapse;
+    table-layout: fixed;
 }
 .user_index_container {
   margin: 0 auto;
@@ -78,9 +80,26 @@ header {
 .destroy_btn {
   float: right;
 }
+.user_index_id {
+  text-align: center;
+  width: 80px;
+}
+.user_index_name {
+  text-align: center;
+  width: 160px;
+}
+.user_index_image {
+  width: 100px;
+  text-align: center;
+}
+.user_index_introduction {
+  width: 700px;
 
+  word-wrap: break-word;
+}
 .user_index_link {
   width: 150px;
+  text-align: center;
 }
 /* review_index */
 .reviews_index_table {

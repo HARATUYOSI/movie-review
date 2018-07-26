@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
 before_action :access_authority, only: [:show,:edit]
 before_action :access_admin, only: [:index]
+  def unsubscribe
+    user = User.find(params[:id])
+    if user.delete_flag == false
+      if user.update(delete_flag: true)
+        redirect_to users_path
+      end
+    else
+    if user.update(delete_flag: false)
+      redirect_to users_path
+    end
+  end
+  end
   def index
     @users = User.all
   end
