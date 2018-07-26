@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :access_admin, only: [:index, :new, :edit]
   def top
     topic = Movie.where(updated_at:1.weeks.ago..Time.now,week: 1..Float::INFINITY)
     topic = topic.sort{|f,s| s.week <=> f.week}.first(30)
@@ -133,8 +134,13 @@ class MoviesController < ApplicationController
   end
 
   private
-  Movie.order(week: :DESC).first(30)
+  def access_admin
+       unless   admin_signed_in?
+         redirect_to root_path
+       end
+   end
 	  def movie_params
 	    params.require(:movie).permit(:title, :image, :release_date, :release_end_date, :genre_id, :country_id, :stroy, :release_year_id, :favorite_count, :review_count, :satr_average)
 	  end
+
 end

@@ -1,4 +1,5 @@
 class DirectorsController < ApplicationController
+  before_action :access_admin, only: [:new]
   def new
     @director = Director.new
     @directors = Director.all
@@ -21,4 +22,10 @@ class DirectorsController < ApplicationController
     @directors = Director.all
     @movies = DirectorMovie.where(director_id: params[:id])
   end
+  private
+  def access_admin
+       unless   admin_signed_in?
+         redirect_to root_path
+       end
+   end
 end

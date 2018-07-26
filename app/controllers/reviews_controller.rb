@@ -1,4 +1,10 @@
 class ReviewsController < ApplicationController
+  before_action :access_authority, only: [:edit]
+  before_action :access_admin, only: [:index]
+
+  def index
+    @reviews = Review.all
+  end
   def new
     @review = Review.new
   end
@@ -65,4 +71,14 @@ class ReviewsController < ApplicationController
 	def review_params
 	params.require(:review).permit(:user_id,:movie_id,:review,:star,:spoiler)
 	end
+  def access_authority
+      unless   user_signed_in? && current_user.id == params[:id].to_i
+        redirect_to user_session_path
+      end
+  end
+  def access_admin
+       unless   admin_signed_in?
+         redirect_to root_path
+       end
+   end
 end

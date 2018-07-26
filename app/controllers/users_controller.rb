@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :access_authority, only: [:show,:edit]
+before_action :access_admin, only: [:index]
   def index
     @users = User.all
   end
@@ -66,4 +67,9 @@ before_action :access_authority, only: [:show,:edit]
   def user_params
       params.require(:user).permit(:name, :introduction, :email, :image)
   end
+  def access_admin
+       unless   admin_signed_in?
+         redirect_to root_path
+       end
+   end
 end

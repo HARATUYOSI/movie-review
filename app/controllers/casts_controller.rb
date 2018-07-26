@@ -1,4 +1,5 @@
 class CastsController < ApplicationController
+  before_action :access_admin, only: [:new]
   def new
     @cast = Cast.new
     @casts = Cast.all
@@ -19,4 +20,10 @@ class CastsController < ApplicationController
     @casts = Cast.all
     @movies = CastMovie.where(cast_id: params[:id])
   end
+  private
+  def access_admin
+       unless   admin_signed_in?
+         redirect_to root_path
+       end
+   end
 end
