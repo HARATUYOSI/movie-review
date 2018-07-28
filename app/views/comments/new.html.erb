@@ -36,8 +36,8 @@
    <div class="container_1 review_text_3">
    <div class="top">
    </div>
-   <label for="topbtn_<%= @review.id %>" class="topbtn_<%= @review.id %>">このレビューネタバレを含みます ≫</label>
-   <input id="topbtn_<%= @review.id %>" type="radio" name="oo_<%= @review.id %>">
+   <label for="topbtn_review<%= @review.id %>" class="topbtn_review<%= @review.id %>">このレビューネタバレを含みます ≫</label>
+   <input id="topbtn_review<%= @review.id %>" type="radio" name="oo_review<%= @review.id %>">
    <div class="btm">
      <div class="review_text">
          <%= @review.review %>
@@ -77,7 +77,13 @@
           <div>
             <%= comment.created_at.strftime('%Y/%m/%d') %>
           </div>
+
         </div>
+        <% if admin_signed_in? || comment.user.id == current_user.id && user_signed_in? %>
+        <div class="comment_delete_link">
+          <%= link_to "削除", movie_review_comment_path(params[:movie_id],params[:review_id],comment.id), class: "btn btn-danger",method: :delete %>
+        </div>
+        <% end %>
       </div>
       <% if comment.spoiler == true %>
       <div class="container_1 review_text_2">
@@ -98,7 +104,9 @@
         <div class="review_text_2">
           <%= comment.comment %>
         </div>
+
       <% end %>
+
     <% end %>
   </div>
   <% if user_signed_in? %>

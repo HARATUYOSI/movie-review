@@ -18,6 +18,14 @@ class CommentsController < ApplicationController
     end
   end
   def destroy
+    comment = Comment.find(params[:id])
+    if comment.destroy
+      review = Review.find(params[:review_id])
+      count = review.comment_count
+      count -= 1
+      review.update(comment_count: count)
+      redirect_to movie_path(params[:movie_id])
+    end
   end
   private
 	  def comment_params

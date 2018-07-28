@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :access_authority, only: [:edit]
+
   before_action :access_admin, only: [:index]
 
   def index
@@ -50,7 +50,7 @@ class ReviewsController < ApplicationController
     end
   end
   def destroy
-    review = Review.find_by(movie_id: params[:movie_id],user_id: current_user.id)
+    review = Review.find_by(id: params[:id])
 
     if review.destroy
       movie = Movie.find_by(id: params[:movie_id])
@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
       count -=1
       movie.update(review_count: count)
       reviews= Review.where(movie_id: params[:movie_id])
-        star = reviews.pluck(:star).sum / reviews.count.to_f
+        star = reviews.pluck(:star).sum / reviews.count
         star = star.round(1)
         review_week = Review.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
         favorite_week = Favorite.where(movie_id: params[:movie_id],created_at:1.weeks.ago..Time.now)
@@ -71,11 +71,7 @@ class ReviewsController < ApplicationController
 	def review_params
 	params.require(:review).permit(:user_id,:movie_id,:review,:star,:spoiler)
 	end
-  def access_authority
-      unless   user_signed_in? && current_user.id == params[:id].to_i
-        redirect_to user_session_path
-      end
-  end
+
   def access_admin
        unless   admin_signed_in?
          redirect_to root_path

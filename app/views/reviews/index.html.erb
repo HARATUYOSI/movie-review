@@ -19,7 +19,7 @@
       <td class="review_review"><%= review.review %></td>
       <td>
         <%= link_to "詳細", new_movie_review_comment_path(review.movie.id,review.id),class: "btn btn-primary"%>
-        <%= link_to "削除", movie_review_path(review.movie.id,review.id),class: "btn btn-danger", method: :destroy %>
+        <%= link_to "削除", movie_review_path(review.movie.id,review.id),class: "btn btn-danger", method: :delete %>
       </td>
     </tr>
     <% end %>
