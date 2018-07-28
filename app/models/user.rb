@@ -28,10 +28,8 @@ class User < ApplicationRecord
          def unfollow!(other_user)
            following_relationships.find_by(following_id: other_user.id).destroy
          end
-         def feed
-           following_ids = "SELECT following_id FROM relationships
-                     WHERE follower_id = :user_id"
-           Review.where("user_id IN (:following_ids) OR user_id = :user_id",
-           following_ids: following_ids, user_id: id)
+         
+         def active_for_authentication?
+             super && !delete_flag?
          end
 end

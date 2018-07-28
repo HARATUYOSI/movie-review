@@ -1,0 +1,27 @@
+<div class="review_all_container">
+  <table border="1"  cellspacing="0" cellpadding="0" align="left" class="review_index_table">
+    <tr>
+      <th class="review_id">ID</th>
+      <th class="review_user_id">USER-ID</th>
+      <th class="review_user_name">USER-NAME</th>
+      <th class="review_movie_id">MOVIE-ID</th>
+      <th class="review_movie_title">MOVIE-TITLE</th>
+      <th class="review_review">REVIEW</th>
+      <th class="review_link">LINK</th>
+    </tr>
+    <% @reviews.each do |review| %>
+    <tr>
+      <td><%= review.id %></td>
+      <td><%= review.user.id %></td>
+      <td><%= review.user.name %></td>
+      <td><%= review.movie.id %></td>
+      <td><%= review.movie.title %></td>
+      <td class="review_review"><%= review.review %></td>
+      <td>
+        <%= link_to "詳細", new_movie_review_comment_path(review.movie.id,review.id),class: "btn btn-primary"%>
+        <%= link_to "削除", movie_review_path(review.movie.id,review.id),class: "btn btn-danger", method: :destroy %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
