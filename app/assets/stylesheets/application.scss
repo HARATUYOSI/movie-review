@@ -164,6 +164,11 @@ header {
   width: 200px;
   height: 220px;
 }
+.movie_image_2 {
+  width: 200px;
+  height: 220px;
+  float: left;
+}
 .movie_content_left {
   float: left;
   width: 300px;
@@ -173,17 +178,28 @@ header {
   height: 400px;
 
 }
+.movie_text_content_stroy {
+  word-wrap: break-word;
+  width: 785px;
+}
 .movie_text {
   float: left;
   font-size: 18px;
   padding: 0 5px;
+}
+.movie_text_2 {
+  float: left;
+  font-size: 18px;
+  padding: 0 5px;
+  width: 795px;
+  margin-left: 30px;
 }
 .text_float {
   float: left;
 }
 .link_box {
   width: 150px;
-  margin-left: 750px;
+  margin-left: 680px;
   margin-top: 50px;
 }
 /* top */
