@@ -1,4 +1,13 @@
 <div class="comment_like_container">
+  <% if @comment.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="comment_new_container clearfix">
   <div class="review_comment_box">
   <div class="clearfix comment_comment">
