@@ -43,8 +43,9 @@ class MoviesController < ApplicationController
     if genre = Genre.find_by(name: params[:genre][:name])
 	     @movie.genre_id = genre.id
 	  else
-	    　new_genre = Genre.create(name: params[:genre][:name])
+	    　 new_genre = Genre.create(name: params[:genre][:name])
 	  　　@movie.genre_id = new_genre.id
+
 	  end
     if country = Country.find_by(name: params[:country][:name])
 	     @movie.country_id = country.id

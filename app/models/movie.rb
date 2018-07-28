@@ -11,6 +11,7 @@ class Movie < ApplicationRecord
   has_many :users, through: :reviews
   has_many :reviews, :dependent => :destroy
   attachment :image
+  validates :image, :title, :release_date, :release_end_date, :genre_id, :country_id, :stroy, :release_year, presence: true
   def favorited_movie_by?(user,movie)
     favorites.where(user_id: user.id,movie_id: movie.id).exists?
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_26_135635) do
+ActiveRecord::Schema.define(version: 2018_07_28_130352) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_07_26_135635) do
     t.integer "movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["movie_id", "cast_id"], name: "index_cast_movies_on_movie_id_and_cast_id", unique: true
   end
 
   create_table "casts", force: :cascade do |t|

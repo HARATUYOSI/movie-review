@@ -7,7 +7,7 @@ class CastsController < ApplicationController
   end
   def create
     if cast= Cast.find_by(name: params[:cast][:name])
-       a = CastMovie.create(cast_id: cast.id, movie_id: params[:movie_id])
+        CastMovie.create(cast_id: cast.id, movie_id: params[:movie_id])
        redirect_to new_movie_cast_path(params[:movie_id])
     else
        new_cast = Cast.create(name: params[:cast][:name])
