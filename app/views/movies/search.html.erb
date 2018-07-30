@@ -1,0 +1,9 @@
+<div class="search_container">
+
+  <% if @search_articles.empty? %>
+  <h3 class="sarch-word"><%= params[:q][:title_cont] %>に関する作品はありません</h3>
+  <% else %>
+  <h3 class="sarch-word"><%= params[:q][:title_cont] %>に関する作品</h3>
+  <%= render 'movies/index',movies: @search_articles  %>
+  <% end %>
+</div>

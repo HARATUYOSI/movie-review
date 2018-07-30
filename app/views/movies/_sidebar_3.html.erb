@@ -5,9 +5,11 @@
   <div class="link_list_headline">
     <h4>製作国一覧</h4>
   </div>
+  <ul>
   <% countries.each do |country| %>
-    <div class="list_content">
+    <div class="link_list_content">
       <%= link_to "#{country.name}", country_path(country.id) %>
     </div>
   <% end %>
+  </ul>
 </div>

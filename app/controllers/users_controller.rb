@@ -15,6 +15,9 @@ before_action :access_admin, only: [:index]
   end
   def index
     @users = User.all
+    
+    @search = User.ransack(params[:q])
+    @users = @search.result.page(params[:page])
   end
   def show
     @user = User.find(params[:id])

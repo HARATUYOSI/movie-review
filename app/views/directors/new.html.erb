@@ -6,7 +6,7 @@
   <% @director_movies.each do |director| %>
   <tr>
     <td><%= director.director.name %></td>
-    <td><%= link_to "削除", "/movies/#{params[:movie_id]}/director_movies/#{director.id}",  method: :delete %></td>
+    <td class="director_delete"><%= link_to "削除", "/movies/#{params[:movie_id]}/director_movies/#{director.id}",  method: :delete %></td>
 
   </tr>
   <% end %>

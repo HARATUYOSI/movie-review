@@ -1,5 +1,5 @@
 <div class="movies_index_container">
-  <%= @movies.each do |movie| %>
+  <% @movies.each do |movie| %>
   <div class="movie_content clearfix">
     <div class="movie_image_2">
       <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>

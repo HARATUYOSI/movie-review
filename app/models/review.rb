@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-  validates :comment, presence: true, length: { maximum: 150 }
+  validates :review, presence: true, length: { maximum: 150 }
   validates :star, presence: true ,  length: { minimum: 1 }
   belongs_to :user
   belongs_to :movie

@@ -2,27 +2,42 @@ class MoviesController < ApplicationController
   before_action :access_admin, only: [:index, :new, :edit]
   def top
     topic = Movie.where(updated_at:1.weeks.ago..Time.now,week: 1..Float::INFINITY)
-    topic = topic.sort{|f,s| s.week <=> f.week}.first(30)
-    @topic_1 = topic[0..5]
-    @topic_2 = topic[6..11]
-    @topic_3 = topic[12..17]
-    @topic_4 = topic[18..23]
-    @topic_5 = topic[24..29]
-    now = Movie.where("release_date <= ?", Time.now).where("release_end_date >= ?", Time.now)
-    @now_1 = now[0..5]
-    @now_2 = now[6..11]
-    @now_3 = now[12..17]
-    @now_4 = now[18..23]
-    @now_5 = now[24..29]
-    coming_soon = Movie.where(release_date: Time.now..Float::INFINITY)
-    @coming_soon_1 = coming_soon[0..5]
-    @coming_soon_2 = coming_soon[6..11]
-    @coming_soon_3 = coming_soon[11..17]
-    @coming_soon_4 = coming_soon[17..23]
-    @coming_soon_5 = coming_soon[23..29]
+    @topic_1 = topic.sort{|f,s| s.week <=> f.week}.first(5)
+    @now_1 = Movie.where("release_date <= ?", Time.now).where("release_end_date >= ?", Time.now).first(5)
+    @coming_soon_1 = Movie.where(release_date: Time.now..Float::INFINITY).first(5)
     reviews = Review.last(6)
     @reviews = reviews.sort{|f,s| s.created_at <=> f.created_at}
-    @movies = Movie.all
+  end
+  def search
+    @search = Movie.ransack(params[:q]) #ransackメソッド推奨
+    @search_articles = @search.result.page(params[:page])
+  end
+  def topic
+    topic = Movie.where(updated_at:1.weeks.ago..Time.now,week: 1..Float::INFINITY)
+    @topic = topic.sort{|f,s| s.week <=> f.week}.first(30)
+    @genre_id = Genre.first
+    @country_id = Country.first
+    @cast_id = Cast.first
+    @director_id = Director.first
+    @release_year_id = ReleaseYear.first
+  end
+  def now
+    @now = Movie.where("release_date <= ?", Time.now).where("release_end_date >= ?", Time.now)
+
+    @genre_id = Genre.first
+    @country_id = Country.first
+    @cast_id = Cast.first
+    @director_id = Director.first
+    @release_year_id = ReleaseYear.first
+  end
+  def coming
+    @coming_soon = Movie.where(release_date: Time.now..Float::INFINITY)
+
+    @genre_id = Genre.first
+    @country_id = Country.first
+    @cast_id = Cast.first
+    @director_id = Director.first
+    @release_year_id = ReleaseYear.first
   end
   def new
     @casts = Cast.all

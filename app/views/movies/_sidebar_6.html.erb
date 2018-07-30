@@ -1,0 +1,13 @@
+<div class="link_list">
+  <div class="link_list_headline">
+    <h4>映画を探す</h4>
+  </div>
+  <ul>
+    <div class="link_list_content"><li><%= link_to "今話題の映画",topic_movies_path %></li></div>
+    <li class="link_list_content"><%= link_to "上映中映画",now_movies_path %></li>
+    <li class="link_list_content"><%= link_to "上映予定の映画",coming_movies_path%></li>
+    <li class="link_list_content"><%= link_to "ジャンルで探す",genre_path(@genre_id)%></li>
+    <li class="link_list_content"><%= link_to "製作国で探す",country_path(@country_id)%></li>
+    <li class="link_list_content"><%= link_to "公開年で探す",release_year_path(@release_year_id)%></li>
+  </ul>
+</div>

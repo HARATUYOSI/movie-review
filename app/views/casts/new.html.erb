@@ -7,7 +7,7 @@
   <% @cast_movies.each do |cast| %>
   <tr>
     <td><%= cast.cast.name %></td>
-    <td><%= link_to "削除", "/movies/#{params[:movie_id]}/cast_movies/#{cast.id}",  method: :delete %></td>
+    <td class="cast_delte"><%= link_to "削除", "/movies/#{params[:movie_id]}/cast_movies/#{cast.id}",  method: :delete %></td>
 
   </tr>
   <% end %>

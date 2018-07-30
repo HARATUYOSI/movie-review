@@ -1,5 +1,13 @@
 <div class="user_index_container">
+  <%= search_form_for @search do |f| %>
 
+    <%= f.label :name %>
+
+    <%= f.search_field :name %>
+
+
+    <div class="actions"><%= f.submit "検索" %></div>
+  <% end %>
     <table border="1"  cellspacing="0" cellpadding="0" align="left" class="user_index_table">
       <tr>
         <th class="user_index_id">ID</th>

@@ -1,48 +1,37 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="top_container">
-  <div class="top_content">
-    <div class="top_headline">
-      <h2>今話題の映画</h2>
+  <div class="top_headline">
+     <h2>今話題の映画</h2>
+   </div>
+  <div class="clearfix top_movie_container" >
+
+      <%= render 'movies/top_content',movies: @topic_1 %>
+
+
+
     </div>
-  <%= render 'movies/swiper_1',movies_1: @topic_1,movies_2: @topic_2,movies_3: @topic_3,movies_4: @topic_4,movies_5: @topic_5 %>
-
-  </div>
-  <div class="top_content">
-    <div class="top_headline">
-      <h2>公開中の映画</h2>
+    <div class="more_btn">
+      <%= link_to "もっと見る",topic_movies_path, class: "btn btn-info" %>
     </div>
-    <%= render 'movies/swiper_1',movies_1: @now_1,movies_2: @now_2,movies_3: @now_3,movies_4: @now_4,movies_5: @now_5 %>
-
-  </div>
-  <div class="top_content">
     <div class="top_headline">
-      <h2>公開予定の映画</h2>
-    </div>
-    <%= render 'movies/swiper_1',movies_1: @coming_soon_1,movies_2: @coming_soon_2,movies_3: @coming_soon_3,movies_4: @coming_soon_4,movies_5: @coming_soon_5 %>
+       <h2>上映中の映画</h2>
+     </div>
+    <div class="clearfix top_movie_container" >
+        <%= render 'movies/top_content',movies: @now_1 %>
+      </div>
+      <div class="more_btn">
+        <%= link_to "もっと見る",now_movies_path, class: "btn btn-info" %>
+      </div>
+      <div class="top_headline">
+         <h2>上映予定の映画</h2>
+       </div>
+      <div class="clearfix top_movie_container" >
 
+          <%= render 'movies/top_content',movies: @coming_soon_1 %>
 
-
-
-
-
-
-
-
-  </div>
+        </div>
+        <div class="more_btn">
+          <%= link_to "もっと見る",coming_movies_path, class: "btn btn-info" %>
+        </div>
   <div class="top_review_container">
     <div class="top_review_headline">
       <h2>新着レビュー</h2>
@@ -83,7 +72,7 @@
         <label for="topbtn_<%= review.id %>" class="topbtn_<%= review.id %>">このレビューネタバレを含みます ≫</label>
         <input id="topbtn_<%= review.id %>" type="radio" name="oo_<%= review.id %>">
         <div class="btm">
-          <div class="review_text">
+          <div class="review_text_4">
               <%= review.review %>
                 </div>
 
@@ -92,18 +81,18 @@
 
               <!--container--></div>
           <% else %>
-          <div class="review_text">
+          <div class="review_text_4">
             <%= review.review %>
           </div>
         <% end %>
         <% if user_signed_in? %>
-        <div class="clearfix">
+        <div class="clearfix review_menu_box">
 
           <div class="like_box">
             <% if review.favorited_by?(current_user) %>
-
+              <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes/1", method: :delete, class: "good_link" %>
             <% else %>
-            <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
+              <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
             <% end %>
             <div class="balloon2-left">
               <P><%= review.like_count %></P>
@@ -146,37 +135,6 @@
     </div>
     <% end %>
 </div>
-
+  </div>
 </div>
 </div>
-<script type="text/javascript">
-window.addEventListener('DOMContentLoaded', function() {
-  var swiper = new Swiper('.sample01 .swiper-container_1', {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    slidesPerView: 1,
-    spaceBetween: 10,
-    centeredSlides : true,
-    effect: "slide",
-    autoplay: '6000',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    loop: true
-  });
-}, false);
-window.addEventListener('DOMContentLoaded', function() {
-  var swiper = new Swiper('.sample02 .swiper-container_2', {
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    slidesPerView: 1,
-    spaceBetween: 10,
-    centeredSlides : true,
-    effect: "slide",
-    autoplay: '6000',
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    loop: true
-  });
-}, false);
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.min.js"></script>

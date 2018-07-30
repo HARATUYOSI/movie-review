@@ -93,5 +93,52 @@
 
   </div>
 </div>
+
+<div class="review_last_container clearfix">
+  <% reviews = Review.where(movie_id: movie.id).last(2) %>
+  <div class="review_last_headline">
+    <h3>最新のレビュー</h3>
+    <% if reviews.empty? %>
+      <div class="review_last_headline_2">
+        <h4>-レビューがまだ投稿されていません-</h4>
+      </div>
+
+    <% end %>
+  </div>
+
+
+
+  <% reviews.each do |review| %>
+<div class="review_last_box">
+  <div class="clearfix review_user_info">
+  <div class="top_review_image"><%= attachment_image_tag review.user, :image, :fill, 80, 80, format: 'jpg', fallback: 'mv.png', :size => '80x80' %></div>
+  <div class="top_user_text">
+    <div><%= review.user.name %></div>
+    <div> <%= date_format(review.created_at) %></div>
+  </div>
+</div>
+  <div class="review_last_text">
+    <div class="star-position">
+      <% if review.star == 1 %>
+        <div class="star-color">★</div>
+      <% elsif review.star == 2 %>
+        <div class="star-color">★★</div>
+      <% elsif review.star == 3 %>
+        <div class="star-color">★★★</div>
+      <% elsif review.star == 4 %>
+        <div class="star-color">★★★★</div>
+      <% elsif review.star == 5 %>
+        <div class="star-color">★★★★★</div>
+      <% end %>
+    </div>
+    <p class="ellipsis"><%= review.review %></p>
+    <div class="review_last_link">
+      <%= link_to "詳細", new_movie_review_comment_path(review.movie.id,review.id)%>
+    </div>
+  </div>
+
+</div>
+<% end %>
+</div>
 <% end %>
 </div>

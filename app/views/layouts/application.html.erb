@@ -25,23 +25,93 @@
           <div class="link_tag"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></div>
         </div>
       <% elsif user_signed_in? %>
-      <div class="link_tags">
-        <ul class="menu">
-            <li class="menu__single">
-                <a href="#" class="init-bottom clearfix"><div class="pulldown_username"><%= current_user.name %></div>
-                  <div class="pulldown_userimage"><%=  attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: 'mv.png', :size => '60x60'  %></div>
+      <dlv class="searchbox clearfix">
+  <%= search_form_for @search, url: movies_search_path do |f| %>
+    <dt class="search_field"><%= f.text_field :title_cont ,placeholder: '検索するタイトルを入力...' %></dt>
+    <dd class="search_btn"><%= f.submit ("検索") , class: 'search-btn'%></dd>
+  <% end %>
+</dlv>
+<div class="link_tags">
+  <ul class="menu">
+      <li class="menu__single">
+          <a href="#" class="init-bottom clearfix"><div class="pulldown_username"><%= current_user.name %></div>
+            <div class="pulldown_userimage"><%=  attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: 'mv.png', :size => '60x60'  %></div>
 
-                </a>
-                <ul class="menu__second-level">
-                    <li><%= link_to "マイページ", user_path(current_user.id) %></li>
-                    <li><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></li>
-                    <li><%= link_to "お問い合わせ", new_contact_path %></li>
-                    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-                </ul>
-            </li>
-            <!-- 他グローバルナビメニュー省略 -->
-        </ul>
-      </div>
+          </a>
+          <ul class="menu__second-level">
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+              <li><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></li>
+              <li><%= link_to "お問い合わせ", new_contact_path %></li>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+          </ul>
+      </li>
+      <!-- 他グローバルナビメニュー省略 -->
+  </ul>
+</div>
+<div class="link_tags">
+  <ul class="menu_2">
+      <li class="menu__single">
+          <a href="#" class="init_bottom_2 clearfix">
+            <i class="fas fa-bell"></i>
+
+          </a>
+
+          <ul class="menu__second-level_2">
+            <% @notifications.each do |n| %>
+            <% if n.has_attribute?(:follower_id) == true %>
+            　<li>
+                <div class="notifications_content clearfix">
+                  <div class="notifications_info clearfix">
+                  <%= link_to User.find(n.following_id).name, user_path(n.following_id) ,class: "user_name_2" %><div class="user_name_2_text">があなたの事をフォローしました</div>
+
+                  <div class="notifications_create_at">
+                    <%= date_format(n.created_at) %>
+                  </div>
+                </div>
+                </div>
+              </li>
+            <% elsif n.has_attribute?(:comment) == true %>
+              <li><div class="notifications_content clearfix">
+                <div class="notifications_info clearfix">
+                  <%= link_to n.user.name, user_path(n.user.id), class: "user_name_2" %><div class="user_name_2_text">があなたの書いたレビューにコメントをしました</div>
+                  <div class="notifications_movie_image">
+                    <%= link_to movie_path(n.review.movie.id) do %>
+                    <% attachment_image_tag n.review.movie, :image, :fill, 50, 60, format: 'jpg', fallback: 'mv.png', :size => '70x80'  %>
+                    <% end %>
+                  </div>
+                  <div class="notifications_create_at">
+                    <%= date_format(n.created_at) %>
+                  </div>
+                </div>
+
+
+
+              </div></li>
+              <% else %>
+                <li><div class="notifications_content clearfix">
+                  <div class="notifications_info clearfix">
+                    <%= link_to n.user.name ,user_path(n.user.id), class: "user_name_2" %><div class="user_name_2_text">があなたの書いたレビューにいいね！をしました</div>
+                    <div class="notifications_movie_image">
+                      <%= link_to movie_path(n.review.movie.id) do %>
+                      <% attachment_image_tag n.review.movie, :image, :fill, 50, 60, format: 'jpg', fallback: 'mv.png', :size => '70x80'  %>
+                      <% end %>
+                    </div>
+                    <div class="notifications_create_at">
+                      <%= date_format(n.created_at) %>
+                    </div>
+                  </div>
+
+
+
+                </div></li>
+              <% end %>
+              <% end %>
+      </li>
+      <!-- 他グローバルナビメニュー省略 -->
+  </ul>
+</div>
+
+
       <% else %>
       <div class="link_tags">
 

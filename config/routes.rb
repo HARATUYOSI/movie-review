@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
   :registrations => 'users/registrations'}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/movies/search' => 'movies#search'
   root 'movies#top'
   resources :users, only: [:edit, :update, :show] do
     member do
@@ -13,7 +15,13 @@ Rails.application.routes.draw do
   end
   get '/favorites/:id/best_movie' => 'favorites#best_movie'
   get 'favorites/:id/best_movie/delete' => 'favorites#best_movie_delete'
-
+  resources :movies do
+    collection do
+      get :topic
+      get :now
+      get :coming
+    end
+  end
   resources :movies do
     resources :casts, only: [:new, :create, :destroy]
     resources :directors, only: [:new, :create, :destroy]

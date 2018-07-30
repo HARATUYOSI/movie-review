@@ -5,9 +5,10 @@
   <div class="link_list_headline">
     <h4>ジャンル一覧</h4>
   </div>
-　　　<% genres.each do |genre| %>
-  <div class="list_content">
-    <%= link_to "#{genre.name}", genre_path(genre.id) %>
-  </div>
-<% end %>
+  <ul>
+    <% genres.each do |genre| %>
+    <div class="link_list_content"><li> <%= link_to "#{genre.name}", genre_path(genre.id) %></li></div>
+    <% end %>
+  </ul>
+
 </div>

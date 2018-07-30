@@ -5,9 +5,12 @@
   <div class="link_list_headline">
     <h4>年代別一覧</h4>
   </div>
-  <% release_years.each do |year| %>
-    <div class="list_content">
-      <%= link_to "#{year.year}", genre_path(year.id) %>
-    </div>
-  <% end %>
+  <ul>
+    <% release_years.each do |year| %>
+      <div class="link_list_content">
+        <li><%= link_to "#{year.year}年", genre_path(year.id) %></li>
+      </div>
+    <% end %>
+  </ul>
+
 </div>

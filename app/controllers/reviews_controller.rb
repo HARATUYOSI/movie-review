@@ -69,7 +69,7 @@ class ReviewsController < ApplicationController
   end
   private
 	def review_params
-	params.require(:review).permit(:user_id,:movie_id,:review,:star,:spoiler)
+	params.require(:review).permit(:user_id,:movie_id,:review,:star,:spoiler, :comment_count)
 	end
 
   def access_admin

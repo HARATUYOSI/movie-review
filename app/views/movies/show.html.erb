@@ -6,11 +6,14 @@
         <p>公開中</p>
         <%= attachment_image_tag @movie, :image, :fill, 300, 400, format: 'jpg', fallback: 'mv.png', :size => '300x400' %>
       </div>
-      <% else @movie.release_date >= Time.now %>
+      <% elsif @movie.release_date >= Time.now %>
       <div class="example_4">
         <p> <%= @movie.release_date %> 公開</p>
         <%= attachment_image_tag @movie, :image, :fill, 300, 400, format: 'jpg', fallback: 'mv.png', :size => '300x400' %>
       </div>
+        <%  else %>
+        <%= attachment_image_tag @movie, :image, :fill, 300, 400, format: 'jpg', fallback: 'mv.png', :size => '300x400' %>
+
       <% end %>
     </div>
     <div class="clearfix show_movie_count_2">
