@@ -1074,7 +1074,11 @@ margin-bottom: 30px;
   position: relative;
   z-index: 2;
 }
-
+.best_movie_headline_2 {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
 .user_name {
   float: left;
 }
@@ -1085,7 +1089,7 @@ margin-bottom: 30px;
   width: 300px;
 }
 .follow-btn, .follow_count {
-  float: left;
+
 }
 .user_name {
   margin-left: 20px;

@@ -6,7 +6,7 @@
         <h2>ベストムービー</h2>
       </div>
       <% if @best_movie_count == 0 %>
-       <h4>ベストムービーは登録されていません</h4>
+       <div class="best_movie_headline_2"><h4>-ベストムービーは登録されていません-</h4></div>
       <% else %>
         <% @best_movies.each do |movie| %>
         <%= render 'movies/favorite_movie_2', movie: movie %>
