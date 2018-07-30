@@ -892,7 +892,7 @@ margin-bottom: 30px;
 }
 .best_movie_link {
   border-top: 1px solid;
-  width: 200px;
+
   margin: 0 auto;
   padding-top: 10px;
 }
@@ -1088,6 +1088,11 @@ margin-bottom: 30px;
 #follow_form {
   width: 300px;
 }
+.follow_btn_2 {
+  float: left;
+  margin-left: 20px;
+  margin-top: 10px;
+}
 .follow-btn, .follow_count {
 
 }
@@ -1108,7 +1113,8 @@ margin-bottom: 30px;
 }
 .follow_count {
   margin-right: 20px;
-  margin-left: 10px;
+  margin-left: 20px;
+  float: left;
 }
 .user_index_box {
   border: 1px solid;
