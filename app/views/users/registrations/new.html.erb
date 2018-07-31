@@ -17,7 +17,7 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上で入力してださい)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
@@ -31,5 +31,6 @@
     <%= f.submit "登録" %>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
+<div class="shared_link">
+  <%= render "users/shared/links" %>
+</div>

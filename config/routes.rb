@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admins
   devise_for :users, :controllers => {
-  :registrations => 'users/registrations'}
+  :registrations => 'users/registrations',:sessions => 'users/sessions'}
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/movies/search' => 'movies#search'

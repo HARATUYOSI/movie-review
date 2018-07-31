@@ -736,6 +736,12 @@ color: black;
   border-bottom: 1px solid;
 
 }
+.shared_link {
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+}
 .followers_box , .following_box {
   float: left;
   font-size: 19px;
@@ -744,8 +750,8 @@ color: black;
 #user_image {
   padding-bottom: 10px;
 }
-#user_name, #user_email {
-  width: 500px;
+#user_name, #user_email, #user_password,#user_password_confirmation {
+  width: 400px;
 }
 #user_introduction {
   width: 500px;
@@ -1348,7 +1354,7 @@ margin-bottom: 30px;
   color: red;
 }
 #comment_comment {
-  width: 500px;
+  width: 400px;
 }
 #new_comment {
   width: 700px;
@@ -1595,7 +1601,7 @@ li.menu__single:hover ul.menu__second-level_2 {
     z-index: 5;
 }
 .new_user {
-  width: 600px;
+  width: 1000px;
   margin: 0 auto;
   text-align: center;
 }

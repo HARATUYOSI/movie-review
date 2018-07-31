@@ -38,3 +38,13 @@ ja:
         comment: コメント
       comment:
         comment: コメント
+ja:
+  activerecord:
+    models:
+      event:
+    attributes:
+      user: 
+        email: メールアドレス
+        name: ニックネーム
+        password: パスワード
+        password_confirmation: パスワード確認
