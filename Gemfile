@@ -76,3 +76,4 @@ gem 'rails-i18n'
 group :production do
   gem 'pg'
 end
+gem 'rails_12factor', group: :production
