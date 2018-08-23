@@ -15,6 +15,7 @@ Country.create(name: 'アメリカ')
 Country.create(name: 'フランス')
 Country.create(name: 'イギリス')
 
+User.create(name: 'test', email: 'test@test', password: 'aaaaaa')
 ReleaseYear.create(year: 2018)
 ReleaseYear.create(year: 2017)
 ReleaseYear.create(year: 2016)
