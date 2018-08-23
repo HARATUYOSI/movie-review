@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get :topic
       get :now
       get :coming
+      get :search
     end
   end
   resources :movies do

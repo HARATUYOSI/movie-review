@@ -3,14 +3,14 @@
   <div id="error_explanation" class="alert alert-danger">
     <ul>
       <% @contact.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
     </ul>
   </div>
-<% end %>
-　<div class="contact_headine">
-　  <h2>お問い合わせ</h2>
-　</div>
+  <% end %>
+  <div class="contact_headine">
+    <h2>お問い合わせ</h2>
+  </div>
   <div class="contact_form">
     <%= form_for(@contact) do |f| %>
     <%= f.text_area :comment %>

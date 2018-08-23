@@ -1,0 +1,8 @@
+<div class="comment_box">
+  <%= link_to  "/movies/#{t.movie.id}/reviews/#{t.id}/comments/new" do  %>
+  <i class="fas fa-comment">コメントする</i>
+  <% end %>
+  <div class="balloon2-left">
+    <%= t.comment_count %>
+  </div>
+</div>

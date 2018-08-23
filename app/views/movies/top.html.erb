@@ -1,140 +1,88 @@
 <div class="top_container">
   <div class="top_headline">
-     <h2>今話題の映画</h2>
-   </div>
+    <h2>今話題の映画</h2>
+  </div>
   <div class="clearfix top_movie_container" >
-
-      <%= render 'movies/top_content',movies: @topic_1 %>
-
-
-
-    </div>
-    <div class="more_btn">
-      <%= link_to "もっと見る",topic_movies_path, class: "btn btn-info" %>
-    </div>
-    <div class="top_headline">
-       <h2>上映中の映画</h2>
-     </div>
-    <div class="clearfix top_movie_container" >
-        <%= render 'movies/top_content',movies: @now_1 %>
-      </div>
-      <div class="more_btn">
-        <%= link_to "もっと見る",now_movies_path, class: "btn btn-info" %>
-      </div>
-      <div class="top_headline">
-         <h2>上映予定の映画</h2>
-       </div>
-      <div class="clearfix top_movie_container" >
-
-          <%= render 'movies/top_content',movies: @coming_soon_1 %>
-
-        </div>
-        <div class="more_btn">
-          <%= link_to "もっと見る",coming_movies_path, class: "btn btn-info" %>
-        </div>
+    <%= render 'movies/top_content',movies: @topic_1 %>
+  </div>
+  <div class="more_btn">
+    <%= link_to "もっと見る",topic_movies_path, class: "btn btn-info" %>
+  </div>
+  <div class="top_headline">
+    <h2>上映中の映画</h2>
+  </div>
+  <div class="clearfix top_movie_container" >
+    <%= render 'movies/top_content',movies: @now_1 %>
+  </div>
+  <div class="more_btn">
+    <%= link_to "もっと見る",now_movies_path, class: "btn btn-info" %>
+  </div>
+  <div class="top_headline">
+    <h2>上映予定の映画</h2>
+  </div>
+  <div class="clearfix top_movie_container" >
+    <%= render 'movies/top_content',movies: @coming_soon_1 %>
+  </div>
+  <div class="more_btn">
+    <%= link_to "もっと見る",coming_movies_path, class: "btn btn-info" %>
+  </div>
   <div class="top_review_container">
     <div class="top_review_headline">
       <h2>新着レビュー</h2>
     </div>
     <div class="clearfix">
-    <% @reviews.each do |review| %>
-    <div class="top_review_content clearfix">
-    <div class="user_info_review_box_2">
-      <div class="clearfix">
-        <%= link_to user_path(review.user.id) do %>
-        <div class="user_show_image_1">
-          <%=  attachment_image_tag review.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
-        </div>
-        <div class="user_show_text_1">
-          <div><%= review.user.name %></div>
-          <% end %>
-          <div class="review_at"><%= date_format(review.created_at) %></div>
-        </div>
-      </div>
-      <div class="review_text_box">
-        <div class="star-position">
-          <% if review.star == 1 %>
-            <div class="star-color">★</div>
-          <% elsif review.star == 2 %>
-            <div class="star-color">★★</div>
-          <% elsif review.star == 3 %>
-            <div class="star-color">★★★</div>
-          <% elsif review.star == 4 %>
-            <div class="star-color">★★★★</div>
-          <% elsif review.star == 5 %>
-            <div class="star-color">★★★★★</div>
-          <% end %>
-        </div>
-        <% if review.spoiler == true %>
-        <div class="container_1 review_text">
-        <div class="top">
-        </div>
-        <label for="topbtn_<%= review.id %>" class="topbtn_<%= review.id %>">このレビューネタバレを含みます ≫</label>
-        <input id="topbtn_<%= review.id %>" type="radio" name="oo_<%= review.id %>">
-        <div class="btm">
-          <div class="review_text_4">
-              <%= review.review %>
+      <% @reviews.each do |review| %>
+      <div class="top_review_content clearfix">
+        <div class="user_info_review_box_2">
+          <div class="clearfix">
+            <%= link_to user_path(review.user.id) do %>
+            <div class="user_show_image_1">
+              <%=  attachment_image_tag review.user, :image, :fill, 100, 100, format: 'jpg', fallback: 'mv.png', :size => '100x100'  %>
+            </div>
+            <div class="user_show_text_1">
+              <div><%= review.user.name %></div>
+              <% end %>
+              <div class="review_at"><%= date_format(review.created_at) %></div>
+            </div>
+          </div>
+          <div class="review_text_box">
+            <%= render 'movies/star_position' ,t:review %>
+            <% if review.spoiler == true %>
+            <div class="container_1 review_text">
+              <div class="top">
+              </div>
+              <label for="topbtn_<%= review.id %>" class="topbtn_<%= review.id %>">このレビューネタバレを含みます ≫</label>
+              <input id="topbtn_<%= review.id %>" type="radio" name="oo_<%= review.id %>">
+              <div class="btm">
+                <div class="review_text">
+                  <%= review.review %>
                 </div>
-
               </div>
               <br>
-
-              <!--container--></div>
-          <% else %>
-          <div class="review_text_4">
-            <%= review.review %>
-          </div>
-        <% end %>
-        <% if user_signed_in? %>
-        <div class="clearfix review_menu_box">
-
-          <div class="like_box">
-            <% if review.favorited_by?(current_user) %>
-              <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes/1", method: :delete, class: "good_link" %>
+            </div>
             <% else %>
-              <%= link_to "いいね！", "/movies/#{review.movie.id}/reviews/#{review.id}/likes" , method: :post %>
+            <div class="review_text_4">
+              <%= review.review %>
+            </div>
             <% end %>
-            <div class="balloon2-left">
-              <P><%= review.like_count %></P>
+            <% if user_signed_in? %>
+            <div class="clearfix review_menu_box">
+              <%= render 'likes/like_box' ,t:review  %>
+              <%= render 'comments/comment_box' ,t:review  %>
             </div>
-          </div>
-
-          <div class="comment_box">
-            <%= link_to "コメントする", "/movies/#{review.movie.id}/reviews/#{review.id}/comments/new"  %>
-            <div class="balloon2-left">
-            <%= review.comment_count %>
-            </div>
+            <% end %>
           </div>
         </div>
-        <% end %>
+        <div class="favorite_movie_content_2">
+          <div>
+            <%= render 'movies/movie_image' ,t:review %>
+          </div>
+          <div class="favorite_movie_title"><h3><%= link_to review.movie.title, movie_path(review.movie.id) %></h3></div>
+          <%= render 'movies/movie_count_1' ,t: review %>
+        </div>
       </div>
-    </div>
-    <div class="favorite_movie_content_2">
-      <div>
-        <%= link_to movie_path(review.movie.id) do%>
-        <%=  attachment_image_tag review.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-      </div>
-      <div class="favorite_movie_title"><h3><%= review.movie.title %></h3></div>
       <% end %>
-      <div class="clearfix show_movie_count">
-        <div class="favorite_box_2">
-          <i class="fas fa-heart"></i>
-          <div><%= review.movie.favorite_count %></div>
-        </div>
-        <div class="star_box">
-          <i class="fas fa-star"></i>
-          <div><%= review.movie.satr_average %></div>
-        </div>
-        <div class="review_box_2">
-          <i class="fas fa-comments"></i>
-          <div><%= review.movie.review_count %></div>
-        </div>
-      </div>
-
     </div>
-    </div>
-    <% end %>
-</div>
   </div>
 </div>
 </div>

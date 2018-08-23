@@ -3,10 +3,9 @@
   <div class="movie_content clearfix">
     <div class="movie_image_2">
       <%= attachment_image_tag movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200' %>
-
     </div>
     <div class="movie_text_2">
-
+<div>
       <div class="movie_text_headline">
         <h2><%= movie.title %></h2>
       </div>
@@ -22,32 +21,30 @@
       <div class="movie_text_content_1">
         ジャンル: <%= movie.genre.name %>
       </div>
-
-
+    </div>
+    <div>
       <div class="movie_text_director_content clearfix">
         <% directors = DirectorMovie.where(movie_id: movie.id)%>
-
         <div>監督</div>
         <% directors.each do |director| %>
-         <div class="director_box"><%=  director.director.name%></div>
+        <div class="director_box"><%=  director.director.name%></div>
         <% end %>
-
       </div>
       <div class="movie_text_cast_content clearfix">
         <% casts = CastMovie.where(movie_id: movie.id)%>
         <% if casts %>
         <div>出演者</div>
         <% casts.each do |cast| %>
-         <div class="cast_box"><%= cast.cast.name %></div>
+        <div class="cast_box"><%= cast.cast.name %></div>
         <% end %>
         <% end %>
       </div>
+    </div>
       <div class="movie_text_content_stroy">
         ストーリー
-
-      <div>
-        <%= movie.stroy %>
-      </div>
+        <div>
+          <%= movie.stroy %>
+        </div>
       </div>
       <div class="link_box clearfix">
         <div class="show_btn"><%= link_to "編集", edit_movie_path(movie.id),class: "btn btn-primary" %></div>

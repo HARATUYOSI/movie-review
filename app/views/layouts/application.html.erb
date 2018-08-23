@@ -1,76 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MovieReview</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css">
-
+<head>
+  <title>MoviCone</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <body>
     <header class="clearfix">
       <div class="headline_box">
-        <h1 class="title"><%= link_to "MOVIE REVIEW", root_path %></h1>
+        <h1 class="title"><%= link_to "MOVICONE", root_path %></h1>
       </div>
       <% if admin_signed_in? %>
-        <div class="link_tags">
-          <div class="link_tag"><%= link_to "問い合わせ一覧", contacts_path %></div>
-          <div class="link_tag"><%= link_to "ユーザー一覧", users_path %></div>
-          <div class="link_tag"><%= link_to "投稿一覧", reviews_path %></div>
-          <div class="link_tag"><%= link_to "作品一覧", movies_path %></div>
-          <div class="link_tag"><%= link_to "作品登録", new_movie_path %></div>
-          <div class="link_tag"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></div>
-        </div>
+      <div class="link_tags">
+        <div class="link_tag"><%= link_to "問い合わせ一覧", contacts_path %></div>
+        <div class="link_tag"><%= link_to "ユーザー一覧", users_path %></div>
+        <div class="link_tag"><%= link_to "投稿一覧", reviews_path %></div>
+        <div class="link_tag"><%= link_to "作品一覧", movies_path %></div>
+        <div class="link_tag"><%= link_to "作品登録", new_movie_path %></div>
+        <div class="link_tag"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></div>
+      </div>
       <% elsif user_signed_in? %>
       <dlv class="searchbox clearfix">
-  <%= search_form_for @search, url: movies_search_path do |f| %>
-    <dt class="search_field"><%= f.text_field :title_cont ,placeholder: '検索するタイトルを入力...' %></dt>
-    <dd class="search_btn"><%= f.submit ("検索") , class: 'search-btn'%></dd>
-  <% end %>
-</dlv>
-<div class="link_tags">
-  <ul class="menu">
-      <li class="menu__single">
-          <a href="#" class="init-bottom clearfix"><div class="pulldown_username"><%= current_user.name %></div>
-            <div class="pulldown_userimage"><%=  attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: 'mv.png', :size => '60x60'  %></div>
-
-          </a>
-          <ul class="menu__second-level">
+        <%= search_form_for @search, url: movies_search_path do |f| %>
+        <dt class="search_field"><%= f.text_field :title_cont ,placeholder: '検索するタイトルを入力...' %></dt>
+        <dd class="search_btn"><%= f.submit ("検索") , class: 'search-btn'%></dd>
+        <% end %>
+      </dlv>
+      <div class="link_tags">
+        <ul class="menu">
+          <li class="menu__single">
+            <a href="#" class="init-bottom clearfix"><div class="pulldown_username"><%= current_user.name %></div>
+              <div class="pulldown_userimage"><%=  attachment_image_tag current_user, :image, :fill, 60, 60, format: 'jpg', fallback: 'mv.png', :size => '60x60'  %></div>
+            </a>
+            <ul class="menu__second-level">
               <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <li><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></li>
               <li><%= link_to "お問い合わせ", new_contact_path %></li>
               <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          </ul>
-      </li>
-      <!-- 他グローバルナビメニュー省略 -->
-  </ul>
-</div>
-<div class="link_tags">
-  <ul class="menu_2">
-      <li class="menu__single">
-          <a href="#" class="init_bottom_2 clearfix">
-            <i class="fas fa-bell"></i>
-
-          </a>
-
-          <ul class="menu__second-level_2">
-            <% @notifications.each do |n| %>
-            <% if n.has_attribute?(:follower_id) == true %>
-            　<li>
-                <div class="notifications_content clearfix">
-                  <div class="notifications_info clearfix">
-                  <%= link_to User.find(n.following_id).name, user_path(n.following_id) ,class: "user_name_2" %><div class="user_name_2_text">があなたの事をフォローしました</div>
-
-                  <div class="notifications_create_at">
-                    <%= date_format(n.created_at) %>
-                  </div>
-                </div>
-                </div>
-              </li>
-            <% elsif n.has_attribute?(:comment) == true %>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="link_tags">
+        <ul class="menu_2">
+          <li class="menu__single">
+            <a href="#" class="init_bottom_2 clearfix">
+              <i class="fas fa-bell"></i>
+            </a>
+            <ul class="menu__second-level_2">
+              <% @notifications.each do |n| %>
+              <% if  n.has_attribute?(:comment) == true %>
               <li><div class="notifications_content clearfix">
                 <div class="notifications_info clearfix">
                   <%= link_to n.user.name, user_path(n.user.id), class: "user_name_2" %><div class="user_name_2_text">があなたの書いたレビューにコメントをしました</div>
@@ -83,50 +64,50 @@
                     <%= date_format(n.created_at) %>
                   </div>
                 </div>
-
-
-
               </div></li>
-              <% else %>
-                <li><div class="notifications_content clearfix">
+              <% elsif n.has_attribute?(:follower_id) == true%>
+              <li>
+                <div class="notifications_content clearfix">
                   <div class="notifications_info clearfix">
-                    <%= link_to n.user.name ,user_path(n.user.id), class: "user_name_2" %><div class="user_name_2_text">があなたの書いたレビューにいいね！をしました</div>
-                    <div class="notifications_movie_image">
-                      <%= link_to movie_path(n.review.movie.id) do %>
-                      <% attachment_image_tag n.review.movie, :image, :fill, 50, 60, format: 'jpg', fallback: 'mv.png', :size => '70x80'  %>
-                      <% end %>
-                    </div>
+                    <%= link_to User.find(n.following_id).name, user_path(n.following_id) ,class: "user_name_2" %><div class="user_name_2_text">があなたの事をフォローしました</div>
+
                     <div class="notifications_create_at">
                       <%= date_format(n.created_at) %>
                     </div>
                   </div>
-
-
-
-                </div></li>
+                </div>
+              </li>
+              <% else %>
+              <li><div class="notifications_content clearfix">
+                <div class="notifications_info clearfix">
+                  <%= link_to n.user.name ,user_path(n.user.id), class: "user_name_2" %><div class="user_name_2_text">があなたの書いたレビューにいいね！をしました</div>
+                  <div class="notifications_movie_image">
+                    <%= link_to movie_path(n.review.movie.id) do %>
+                    <% attachment_image_tag n.review.movie, :image, :fill, 50, 60, format: 'jpg', fallback: 'mv.png', :size => '70x80'  %>
+                    <% end %>
+                  </div>
+                  <div class="notifications_create_at">
+                    <%= date_format(n.created_at) %>
+                  </div>
+                </div>
+              </div></li>
               <% end %>
               <% end %>
-      </li>
-      <!-- 他グローバルナビメニュー省略 -->
-  </ul>
-</div>
-
-
-      <% else %>
-      <div class="link_tags">
-
-        <div class="link_tag"><%= link_to "新規登録",new_user_registration_path  %></div>
-        <div class="link_tag"><%= link_to "ログイン", new_user_session_path%></div>
-      </div>
+            </li>
+          </ul>
+        </div>
+        <% else %>
+        <div class="link_tags">
+          <div class="link_tag"><%= link_to "新規登録",new_user_registration_path  %></div>
+          <div class="link_tag"><%= link_to "ログイン", new_user_session_path%></div>
+        </div>
+        <% end %>
+      </header>
+      <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
       <% end %>
-    </header>
-
-<% if alert %>
-  <p class="alert alert-error"><%= alert %></p>
-<% end %>
-    <%= yield %>
-    <footer>
-
-    </footer>
-  </body>
-</html>
+      <%= yield %>
+      <footer>
+      </footer>
+    </body>
+    </html>

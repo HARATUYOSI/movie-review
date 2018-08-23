@@ -15,5 +15,8 @@ class Movie < ApplicationRecord
   def favorited_movie_by?(user,movie)
     favorites.where(user_id: user.id,movie_id: movie.id).exists?
   end
+  def review_movie_by?(user,movie)
+    reviews.where(user_id: user.id,movie_id: movie.id).exists?
+  end
 
 end

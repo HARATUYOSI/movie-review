@@ -1,179 +1,39 @@
 <div class="user_show_container clearfix containew">
-
   <%= render 'side_bar' %>
-
-      <div class="time_line_box">
-        <div class="time_line_headline">
-          <h2>タイムライン</h2>
-        </div>
-        <% @time_line.each do |t| %>
-          <div class="time_line_content">
-            <div class="clearfix time_line_user">
-              <div class="user_image">
-                <%= link_to favorites_user_path(t.user.id) do %>
-                <%=  attachment_image_tag t.user, :image, :fill, 50, 50, format: 'jpg', fallback: 'mv.png', :size => '50x50'  %>
-              </div>
-              <div class="user_name">
-                <%= t.user.name %>
-                <% end %>
-              <div><%= date_format(t.created_at) %></div>
-              </div>
-            </div>
-          <% if t.has_attribute?(:review) == true %>
-            <div class="clearfix time_line_review_box">
-              <div class="time_line_image">
-                <% if t.movie.release_date <= Time.now && t.movie.release_end_date >= Time.now %>
-
-                    <div class="example_2">
-                      <%= link_to movie_path(t.movie.id) do%>
-                      <p>公開中</p>
-                      <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                    </div>
-                    <div class="favorite_movie_title"><h3><%= t.movie.title %></h3></div>
-                    <% end %>
-                    <% elsif t.movie.release_date >= Time.now %>
-
-
-                          <div class="example">
-
-                            <%= link_to movie_path(t.movie.id) do%>
-                            <p><%= t.movie.release_date %> 公開</p>
-                            <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                          </div>
-                          <div class="favorite_movie_title"><h3><%= t.movie.title %></h3></div>
-                          <% end %>
-                          <%  else %>
-
-                      <div>
-                        <%= link_to movie_path(t.movie.id) do%>
-                        <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                      </div>
-                      <div class="favorite_movie_title"><h3><%= t.movie.title %></h3></div>
-                      <% end %>
-              <% end %>
-                <div class="clearfix show_movie_count">
-                  <div class="favorite_box_2">
-                    <i class="fas fa-heart"></i>
-                    <div><%= t.movie.favorite_count %></div>
-                  </div>
-                  <div class="star_box">
-                    <i class="fas fa-star"></i>
-                    <div><%= t.movie.satr_average %></div>
-                  </div>
-                  <div class="review_box_2">
-                    <i class="fas fa-comments"></i>
-                    <div><%= t.movie.review_count %></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="time_line_review_2">
-
-                <div class="star-position">
-                  <% if t.star == 1 %>
-                    <div class="star-color">★</div>
-                  <% elsif t.star == 2 %>
-                    <div class="star-color">★★</div>
-                  <% elsif t.star == 3 %>
-                    <div class="star-color">★★★</div>
-                  <% elsif t.star == 4 %>
-                    <div class="star-color">★★★★</div>
-                  <% elsif t.star == 5 %>
-                    <div class="star-color">★★★★★</div>
-                  <% end %>
-                </div>
-                <% if t.spoiler == true %>
-                <div class="container_1 review_text">
-                <div class="top">
-                </div>
-                <label for="topbtn_<%= t.id %>" class="topbtn_<%= t.id %>">このレビューはネタバレを含みます ≫</label>
-                <input id="topbtn_<%= t.id %>" type="radio" name="oo_<%= t.id %>">
-                <div class="btm">
-                  <div class="review_text">
-                      <%= t.review %>
-                        </div>
-
-                      </div>
-                      <br>
-
-                      <!--container--></div>
-                  <% else %>
-                  <div class="review_text">
-                    <%= t.review %>
-                  </div>
-                <% end %>
-
-              </div>
-            </div>
-            <div class="clearfix">
-              <div class="like_box">
-                <% if t.favorited_by?(current_user) %>
-                <%= link_to "いいね！", movie_review_like_path(t.movie,t), method: :delete,class: "good_link" %>
-                <% else %>
-                <%= link_to "いいね！", "/movies/#{t.movie.id}/reviews/#{t.id}/likes" , method: :post %>
-                <% end %>
-                <div class="balloon2-left">
-                  <P><%= t.like_count %></P>
-                </div>
-              </div>
-              <div class="comment_box">
-                <%= link_to "コメントする", "/movies/#{t.movie.id}/reviews/#{t.id}/comments/new"  %>
-                <div class="balloon2-left">
-                <%= t.comment_count %>
-                </div>
-              </div>
-            </div>
-          <% else %>
-
-            <div class="clearfix time_line_favorite_box">
-            　<div class="time_line_image">
-              <% if t.movie.release_date <= Time.now && t.movie.release_end_date >= Time.now %>
-
-                  <div class="example_2">
-                    <%= link_to movie_path(t.movie.id) do%>
-                    <p>公開中</p>
-                    <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                  </div>
-                  <% end %>
-                  <% elsif t.movie.release_date >= Time.now %>
-
-
-                        <div class="example">
-
-                          <%= link_to movie_path(t.movie.id) do%>
-                          <p><%= t.movie.release_date %> 公開</p>
-                          <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                        </div>
-                        <% end %>
-                        <%  else %>
-
-                    <div>
-                      <%= link_to movie_path(t.movie.id) do%>
-                      <%=  attachment_image_tag t.movie, :image, :fill, 200, 200, format: 'jpg', fallback: 'mv.png', :size => '200x200'  %>
-                    </div>
-                    <% end %>
-            <% end %>
-                <div class="clearfix show_movie_count">
-                  <div class="favorite_box_2">
-                    <i class="fas fa-heart"></i>
-                    <div><%= t.movie.favorite_count %></div>
-                  </div>
-                  <div class="star_box">
-                    <i class="fas fa-star"></i>
-                    <div><%= t.movie.satr_average %></div>
-                  </div>
-                  <div class="review_box_2">
-                    <i class="fas fa-comments"></i>
-                    <div><%= t.movie.review_count %></div>
-                  </div>
-                </div>
-              </div>
-              <div class="time_line_text"><%= link_to t.movie.title, movie_path(t.movie.id) %>をお気に入り登録しました!</div>
-            </div>
-            <% end %>
-          </div>
-        <% end %>
+  <div class="time_line_box">
+    <div class="time_line_headline">
+      <h2>タイムライン</h2>
+    </div>
+    <% @time_line.each do |t| %>
+    <div class="time_line_content">
+      <div class="clearfix time_line_user">
+        <%= render 'users/user_info' ,t: t %>
       </div>
-
-
+      <% if t.has_attribute?(:review) == true %>
+      <div class="clearfix time_line_review_box">
+        <div class="time_line_image">
+          <%= render 'movies/movie_image' ,t: t%>
+          <%= render 'movies/movie_count_1' ,t: t%>
+        </div>
+        <div class="time_line_review_2">
+          <%= render 'movies/star_position' ,t: t%>
+          <%= render 'reviews/review_text' ,t: t%>
+        </div>
+      </div>
+      <div class="clearfix">
+        <%= render 'likes/like_box' ,t: t%>
+        <%= render 'comments/comment_box' ,t: t%>
+      </div>
+      <% else %>
+      <div class="clearfix time_line_favorite_box">
+        <div class="time_line_image">
+          <%= render 'movies/movie_image' ,t: t%>
+          <%= render 'movies/movie_count_1' ,t: t%>
+        </div>
+        <div class="time_line_text"><%= link_to t.movie.title, movie_path(t.movie.id) %>をお気に入り登録しました!</div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
 </div>

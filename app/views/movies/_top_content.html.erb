@@ -1,7 +1,6 @@
 <% movies.each do |movie| %>
 <div class="top_movie_content">
   <% if movie.release_date <= Time.now && movie.release_end_date >= Time.now %>
-
       <div class="example_2">
         <%= link_to movie_path(movie.id) do%>
         <p>公開中</p>
@@ -10,8 +9,6 @@
       <div class="favorite_movie_title"><h3><%= movie.title %></h3></div>
       <% end %>
       <% elsif movie.release_date >= Time.now %>
-
-
             <div class="example">
 
               <%= link_to movie_path(movie.id) do%>

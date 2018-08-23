@@ -1,8 +1,6 @@
 <%= form_for(current_user.following_relationships.build(following_id: @user.id)) do |f| %>
   <div><%= f.hidden_field :following_id %></div>
-
   <%= button_tag :type => "submit", :class =>"btn btn-large btn-primary follow-btn" do %>
 　　<i class = "fas fa-user-plus fa-fw"></i> フォロー
-
   <% end %>
 <% end %>

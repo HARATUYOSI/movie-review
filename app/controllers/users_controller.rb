@@ -8,14 +8,13 @@ before_action :access_admin, only: [:index]
         redirect_to users_path
       end
     else
-    if user.update(delete_flag: false)
-      redirect_to users_path
+      if user.update(delete_flag: false)
+        redirect_to users_path
+      end
     end
-  end
   end
   def index
     @users = User.all
-    
     @search = User.ransack(params[:q])
     @users = @search.result.page(params[:page])
   end
@@ -27,8 +26,8 @@ before_action :access_admin, only: [:index]
     user_id = followings.pluck(:following_id)
     favorites_1 = Favorite.where(user_id: user_id)
     reviews = Review.where(user_id: user_id)
-    b = reviews+favorites_1
-    @time_line= b.sort{|f,s| s.created_at <=> f.created_at}
+    time_line = reviews+favorites_1
+    @time_line= time_line.sort{|f,s| s.created_at <=> f.created_at}
   end
   def favorites
     @user = User.find(params[:id])
@@ -36,7 +35,7 @@ before_action :access_admin, only: [:index]
     @review_count = Review.where(user_id: params[:id]).count
     @movies = Favorite.where(user_id: params[:id])
     @best_movies = Favorite.where(user_id: params[:id],best_movie: true)
-     @best_movie_count = Favorite.where(best_movie: true,user_id: params[:id]).count
+    @best_movie_count = Favorite.where(best_movie: true,user_id: params[:id]).count
   end
   def reviews
     @user = User.find(params[:id])
@@ -49,13 +48,12 @@ before_action :access_admin, only: [:index]
     @user = User.find(params[:id])
   end
   def update
-
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "ユーザ情報を編集しました"
       redirect_to user_path(@user.id)
     else
-       render root_path
+       render 'edit'
     end
   end
   def following
@@ -78,7 +76,7 @@ before_action :access_admin, only: [:index]
       unless   admin_signed_in? ||  user_signed_in? && current_user.id == params[:id].to_i
         redirect_to user_session_path
       end
-    end
+  end
   def user_params
       params.require(:user).permit(:name, :introduction, :email, :image)
   end
@@ -86,5 +84,5 @@ before_action :access_admin, only: [:index]
        unless   admin_signed_in?
          redirect_to root_path
        end
-   end
+  end
 end

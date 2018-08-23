@@ -3,7 +3,6 @@ class DirectorsController < ApplicationController
   def new
     @director = Director.new
     @directors = Director.all
-
     @director_movies = DirectorMovie.where(movie_id: params[:movie_id])
   end
   def create
@@ -14,7 +13,6 @@ class DirectorsController < ApplicationController
        new_director = Director.create(name: params[:director][:name])
        DirectorMovie.create(director_id: new_director.id, movie_id: params[:movie_id])
        redirect_to new_movie_director_path(params[:movie_id])
-
     end
   end
   def show

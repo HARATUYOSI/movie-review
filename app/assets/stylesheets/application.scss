@@ -235,6 +235,9 @@ header {
   border-collapse: collapse;
     table-layout: fixed;
 }
+.release_year_text {
+  font-size: 15px;
+}
 .movie_content_left {
   float: left;
   width: 300px;
@@ -247,6 +250,7 @@ header {
   height: 400px;
 
 }
+
 .movie_text_content_stroy {
   word-wrap: break-word;
   width: 785px;
@@ -254,7 +258,7 @@ header {
 .movie_text {
   float: left;
   font-size: 18px;
-  padding: 0 5px;
+  padding: 15px 15px;
 }
 .movie_text_2 {
   float: left;
@@ -262,6 +266,12 @@ header {
   padding: 0 5px;
   width: 795px;
   margin-left: 30px;
+}
+.movie_text_3 {
+  float: left;
+  font-size: 18px;
+  padding: 15px 15px;
+  width: 808px;
 }
 .text_float {
   float: left;
@@ -321,13 +331,21 @@ height:100%;
 width: 100%;
 color: black;
 }
-
+.review_link {
+  margin-bottom: 10px;
+}
 .star_box,.favorite_box_2, .review_box_2 {
   float: left;
   width: 66px;
   text-align: center;
   font-size: 25px;
   border: 1px solid;
+}
+.text_content_link {
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #eeeeee;
 }
 .star_box_3,.favorite_box_4, .review_box_4{
   float: left;
@@ -1025,6 +1043,13 @@ margin-bottom: 30px;
   padding-bottom: 30px;
   padding-left: 15px;
 }
+.review_text_5 {
+  margin-top: 20px;
+  font-size: 18px;
+
+  padding-bottom: 30px;
+  padding-left: 15px;
+}
 .review_text_3 {
   margin-top: 20px;
   font-size: 18px;
@@ -1047,7 +1072,7 @@ margin-bottom: 30px;
   display: none;
 }
 .container_1 label {
-  color: #4776AF;
+  color: #e63e14;
   cursor: pointer;
 
 }

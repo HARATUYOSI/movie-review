@@ -6,16 +6,15 @@ class CommentsController < ApplicationController
     @like_users = Like.where(review_id:  params[:review_id])
   end
   def create
-    comment = Comment.new(comment_params)
-    comment.user_id = current_user.id
-    comment.review_id = params[:review_id]
-    if comment.save
+    @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.review_id = params[:review_id]
+    if @comment.save
       review = Review.find(params[:review_id])
       count = review.comment_count
       count += 1
-
       review.update(comment_count: count)
-      redirect_to movie_path(params[:movie_id])
+      redirect_to new_movie_review_comment_path(params[:movie_id],review.id)
     end
   end
   def destroy
@@ -25,7 +24,7 @@ class CommentsController < ApplicationController
       count = review.comment_count
       count -= 1
       review.update(comment_count: count)
-      redirect_to movie_path(params[:movie_id])
+      redirect_to new_movie_review_comment_path(params[:movie_id],review.id)
     end
   end
   private

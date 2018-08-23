@@ -9,27 +9,27 @@
         <div><%= @user.introduction %></div>
       </div>
     </div>
-      <div class="user_link_box">
-        <% if  admin_signed_in? || params[:id].to_i == current_user.id%>
-          <%= link_to "プロフィール編集", edit_user_path(params[:id]), class: "btn btn-primary" %>
-        <% end %>
-        <% unless current_user?(@user) %>
-          <div id="follow_form">
-          <% if current_user.following?(@user) %>
-            <%= render 'unfollow' %>
-          <% else %>
-            <%= render 'follow' %>
-          <% end %>
-          </div>
+    <div class="user_link_box">
+      <% if  admin_signed_in? || params[:id].to_i == current_user.id%>
+      <%= link_to "プロフィール編集", edit_user_path(params[:id]), class: "btn btn-primary" %>
+      <% end %>
+      <% unless current_user?(@user) %>
+      <div id="follow_form">
+        <% if current_user.following?(@user) %>
+        <%= render 'unfollow' %>
+        <% else %>
+        <%= render 'follow' %>
         <% end %>
       </div>
+      <% end %>
+    </div>
   </div>
   <div class="user_info_underline"></div>
   <div class="clearfix user_show_count">
     <div class="favorite_box">
       <%=  link_to "/users/#{@user.id}/favorites", :style=>"color:black;" do %>
-        <i class="fas fa-heart"></i>
-        <div class="favorite_count"><%= @favorite_count %></div>
+      <i class="fas fa-heart"></i>
+      <div class="favorite_count"><%= @favorite_count %></div>
       <% end %>
     </div>
     <div class="review_box">
@@ -38,23 +38,22 @@
       <div><%= @review_count %></div>
       <% end %>
     </div>
-      <div class="following_box">
-        <% @user ||= current_user %>
-         <a  class="following" href="<%= following_user_path(@user) %>">
-           <div>following</div>
-           <div class="following_count">
-             <%= @user.followings.count %>
-           </div>
-         </a>
-      </div>
-      <div class="followers_box">
-        <a class="followers" href="<%= followers_user_path(@user) %>">
-          <div>followers</div>
-          <div class="followers_count">
-            <%= @user.followers.count %>
-          </div>
-        </a>
-      </div>
+    <div class="following_box">
+      <% @user ||= current_user %>
+      <a  class="following" href="<%= following_user_path(@user) %>">
+        <div>following</div>
+        <div class="following_count">
+          <%= @user.followings.count %>
+        </div>
+      </a>
+    </div>
+    <div class="followers_box">
+      <a class="followers" href="<%= followers_user_path(@user) %>">
+        <div>followers</div>
+        <div class="followers_count">
+          <%= @user.followers.count %>
+        </div>
+      </a>
+    </div>
   </div>
-
 </div>

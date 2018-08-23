@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
          validates :name, :email, presence: true
-
          attachment :image
          has_many :contacts
          has_many :movies, through: :favorites
@@ -29,7 +28,6 @@ class User < ApplicationRecord
          def unfollow!(other_user)
            following_relationships.find_by(following_id: other_user.id).destroy
          end
-
          def active_for_authentication?
              super && !delete_flag?
          end

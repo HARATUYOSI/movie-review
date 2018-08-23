@@ -1,6 +1,6 @@
 <div class="user_show_container clearfix">
   <%= render 'side_bar' %>
   <div class="user_right_container_2 clearfix">
-    <%= render 'user_index' %>
+    <%= render 'user_index', users: @user.followings %>
   </div>
 </div>

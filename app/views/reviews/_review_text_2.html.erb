@@ -1,0 +1,20 @@
+<% if review.spoiler == true %>
+<div class="container_1 review_text_2">
+<div class="top">
+</div>
+<label for="topbtn_<%= review.id %>" class="topbtn_<%= review.id %>">このレビューネタバレを含みます ≫</label>
+<input id="topbtn_<%= review.id %>" type="radio" name="oo_<%= review.id %>">
+<div class="btm">
+  <div class="review_text">
+      <%= review.review %>
+        </div>
+
+      </div>
+      <br>
+
+      <!--container--></div>
+  <% else %>
+  <div class="review_text_2">
+    <%= review.review %>
+  </div>
+<% end %>

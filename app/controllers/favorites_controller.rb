@@ -27,7 +27,6 @@ class FavoritesController < ApplicationController
   def best_movie
     favorite = Favorite.find_by(movie_id: params[:id],user_id: current_user.id)
     if favorite.update(best_movie: true)
-
       redirect_to "/users/#{current_user.id}/favorites"
     end
   end
