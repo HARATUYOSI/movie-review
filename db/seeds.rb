@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Genre.create(name: 'アクション')
+Genre.create(name: 'ドラマ')
+Genre.create(name: '恋愛')
+Genre.create(name: 'サスペンス')
+Genre.create(name: 'SF')
+Country.create(name: '日本')
+Country.create(name: 'アメリカ')
+Country.create(name: 'フランス')
+Country.create(name: 'イギリス')
+Admin.create(email: 'test@test', password: 'aaaaaa')
